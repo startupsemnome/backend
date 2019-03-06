@@ -29,5 +29,11 @@ class UserController extends BaseController
       $user->update($request->all());
       return response()->json($user, 200);
     }
+    public function delete($id)
+    {
+      $user = User::findOrFail($id);
+      $user->delete();
+      return response()->json("Deletado com Sucesso", 200);
+    }
 }
 
