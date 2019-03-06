@@ -14,3 +14,5 @@
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
+
+$router->get('user',  ['uses' => 'UserController@showAll']);
