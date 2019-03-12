@@ -24,7 +24,7 @@ class Resource extends Model implements AuthenticatableContract, AuthorizableCon
     public $table = "resource";
 
     /**
-     * The attributes excluded from the model's JSON form.
+     * The attributes excluded from the model's JSON forms.
      *
      * @var array
      */
