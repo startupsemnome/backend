@@ -35,3 +35,10 @@ $router->get('problem/{id}',  ['uses' => 'ProblemController@showOne']);
 $router->post('problem',  ['uses' => 'ProblemController@create']);
 $router->put('problem/{id}',  ['uses' => 'ProblemController@update']);
 $router->delete('problem/{id}',  ['uses' => 'ProblemController@delete']);
+
+// resource
+$router->get('resource',  ['uses' => 'ResourceController@showAll']);
+$router->get('resource/{id}',  ['uses' => 'ResourceController@showOne']);
+$router->post('resource',  ['uses' => 'ResourceController@create']);
+$router->put('resource/{id}',  ['uses' => 'ResourceController@update']);
+$router->delete('resource/{id}',  ['uses' => 'ResourceController@delete']);
