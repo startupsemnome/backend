@@ -29,3 +29,9 @@ $router->post('company',  ['uses' => 'CompanyController@create']);
 $router->put('company/{id}',  ['uses' => 'CompanyController@update']);
 $router->delete('company/{id}',  ['uses' => 'CompanyController@delete']);
 
+// problem 
+$router->get('problem',  ['uses' => 'ProblemController@showAll']);
+$router->get('problem/{id}',  ['uses' => 'ProblemController@showOne']);
+$router->post('problem',  ['uses' => 'ProblemController@create']);
+$router->put('problem/{id}',  ['uses' => 'ProblemController@update']);
+$router->delete('problem/{id}',  ['uses' => 'ProblemController@delete']);
