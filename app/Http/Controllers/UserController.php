@@ -19,6 +19,13 @@ class UserController extends BaseController
       return response()->json($user, 201);
     }
   
+  public function delete($id)
+    {
+      $user = User::findOrFail($id);
+      $user->delete();
+      return response()->json("Deletado com Sucesso");
+    }
+
   public function showOne($id)
     {
       return response()->json(User::find($id));
