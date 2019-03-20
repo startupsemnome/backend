@@ -19,6 +19,13 @@ class CompanyController extends BaseController
       return response()->json($company, 201);
     }
   
+  public function delete($id)
+    {
+      $company = Company::findOrFail($id);
+      $company->delete();
+      return response()->json("Deletado com Sucesso!");
+    }
+  
   public function showOne($id)
     {
       return response()->json(Company::find($id));
