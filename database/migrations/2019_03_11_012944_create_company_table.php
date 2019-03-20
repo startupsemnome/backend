@@ -15,7 +15,18 @@ class CreateCompanyTable extends Migration
     {
         Schema::create('company', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('empresa',100);
+            $table->string('cnpj',20);
+            $table->string('tele',15);
+            $table->string('email',100);
+            $table->string('est',100);
+            $table->string('cid',100);
+            $table->string('bair',100);
+            $table->string('rua',100);
+            $table->string('num',100);
+            $table->string('message',100);
             $table->timestamps();
+
         });
     }
 
