@@ -23,9 +23,4 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 
     public $table = "user";
 
-    /**
-     * The attributes excluded from the model's JSON form.
-     *
-     * @var array
-     */
 }
