@@ -6,11 +6,6 @@ use App\Problem;
 use Illuminate\Http\Request;
 use Laravel\Lumen\Routing\Controller as BaseController;
 
-/**
-     * Alterar todas as "user" para o nome do arquivo.php (problem.php).
-     *
-     */
-
 class ProblemController extends BaseController
 {
   public function showAll()
@@ -23,7 +18,13 @@ class ProblemController extends BaseController
       $problem = Problem::create($request->all());
       return response()->json($problem, 201);
     }
-  
+
+    public function delete($id)
+    {
+      $problem = Problem::findOrFail($id);
+      $problem->delete();
+      return response()->json("Deletado com Sucesso");
+    }
   public function showOne($id)
     {
       return response()->json(Problem::find($id));
