@@ -18,7 +18,15 @@ class ResourceController extends BaseController
       $resource= Resource::create($request->all());
       return response()->json($resource, 201);
     }
-  //Comentario.
+  
+  public function delete($id)
+    {
+      $resource = Resource::findOrFail($id);
+      $resource->delete();
+      return response()->json("Deletado com Sucesso!");
+  }
+
+  //Comentario. 
   public function showOne($id)
     {
       return response()->json(Resource::find($id));
