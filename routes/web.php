@@ -22,6 +22,20 @@ $router->post('user',  ['uses' => 'UserController@create']);
 $router->put('user/{id}',  ['uses' => 'UserController@update']);
 $router->delete('user/{id}',  ['uses' => 'UserController@delete']);
 
+// company
+$router->get('company',  ['uses' => 'CompanyController@showAll']);
+$router->get('company/{id}',  ['uses' => 'CompanyController@showOne']);
+$router->post('company',  ['uses' => 'CompanyController@create']);
+$router->put('company/{id}',  ['uses' => 'CompanyController@update']);
+$router->delete('company/{id}',  ['uses' => 'CompanyController@delete']);
+
+// problem 
+$router->get('problem',  ['uses' => 'ProblemController@showAll']);
+$router->get('problem/{id}',  ['uses' => 'ProblemController@showOne']);
+$router->post('problem',  ['uses' => 'ProblemController@create']);
+$router->put('problem/{id}',  ['uses' => 'ProblemController@update']);
+$router->delete('problem/{id}',  ['uses' => 'ProblemController@delete']);
+
 // resource
 $router->get('resource',  ['uses' => 'ResourceController@showAll']);
 $router->get('resource/{id}',  ['uses' => 'ResourceController@showOne']);
