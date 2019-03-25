@@ -25,7 +25,18 @@ class UserController extends BaseController
       $user->delete();
       return response()->json("Deletado com Sucesso");
     }
-
+  //  Posso criar um metodo login aqui ou terei de criar um controler login para usuario 
+  public function login(Request $request)
+  {    
+    $user = User::where('password', $request->senha)->where(function ($query) use ($request) {
+      $query->where('name', '=', $request->login)
+            ->orWhere('email', '=', $request->login);
+      })->first();
+    if(!$user){
+      return response()->json("Usuario ou Senha estão incorretos");
+    }
+    return response()->json($user);
+  }
   public function showOne($id)
     {
       return response()->json(User::find($id));
