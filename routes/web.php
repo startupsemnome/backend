@@ -21,6 +21,7 @@ $router->get('user/{id}',  ['uses' => 'UserController@showOne']);
 $router->post('user',  ['uses' => 'UserController@create']);
 $router->put('user/{id}',  ['uses' => 'UserController@update']);
 $router->delete('user/{id}',  ['uses' => 'UserController@delete']);
+$router->get('count-user', ['uses' => 'UserController@getCountUser']);
 
 // company
 $router->get('company',  ['uses' => 'CompanyController@showAll']);

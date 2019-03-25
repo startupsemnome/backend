@@ -18,7 +18,10 @@ class UserController extends BaseController
       $user = User::create($request->all());
       return response()->json($user, 201);
     }
-  
+  public function getCountUser(){
+    $users = User::get()->count();
+    return response()->json($users, 201);
+  }
   public function delete($id)
     {
       $user = User::findOrFail($id);
