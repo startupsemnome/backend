@@ -42,3 +42,11 @@ $router->get('resource/{id}',  ['uses' => 'ResourceController@showOne']);
 $router->post('resource',  ['uses' => 'ResourceController@create']);
 $router->put('resource/{id}',  ['uses' => 'ResourceController@update']);
 $router->delete('resource/{id}',  ['uses' => 'ResourceController@delete']);
+
+// dashboard
+$router->get('dashboard/count-company',  ['uses' => 'DashboardController@getCountCompany']);
+$router->get('dashboard/count-resource',  ['uses' => 'DashboardController@getCountResource']);
+$router->get('dashboard/count-problem',  ['uses' => 'DashboardController@getCountProblem']);
+$router->get('dashboard/count-user',  ['uses' => 'DashboardController@getCountUsers']);
+
+
