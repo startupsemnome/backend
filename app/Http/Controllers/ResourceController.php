@@ -26,6 +26,14 @@ class ResourceController extends BaseController
       return response()->json("Deletado com Sucesso!");
   }
 
+  public function search($search) 
+  {        
+    $query = Resource::where('fname', 'LIKE', '%'. $search .'%')
+    ->orWhere('hab', 'LIKE', '%'. $search .'%')
+    ->get();
+  }
+
+
   //Comentario. 
   public function showOne($id)
     {
