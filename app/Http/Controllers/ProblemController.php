@@ -26,7 +26,7 @@ class ProblemController extends BaseController
   }
   public function showOne($id)
   {
-    return response()->json(Problem::find($id));
+    return response()->json(Problem::with("company")->find($id));
   }
   public function update($id, Request $request)
   {

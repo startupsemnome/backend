@@ -10,7 +10,7 @@ class CompanyController extends BaseController
 {
   public function showAll()
     {
-        return response()->json(Company::all());
+        return response()->json(Company::with("problem")->get());
     }
   
   public function create(Request $request)
@@ -28,7 +28,7 @@ class CompanyController extends BaseController
   
   public function showOne($id)
     {
-      return response()->json(Company::find($id));
+      return response()->json(Company::with("problem")->find($id));
     }
   public function update($id, Request $request)
     {
