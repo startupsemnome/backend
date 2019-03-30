@@ -31,4 +31,9 @@ class Company extends Model implements AuthenticatableContract, AuthorizableCont
     protected $hidden = [
         'password',
     ];
+
+    public function problem(){
+        return $this->hasMany('App\Problem');
+    }
+    
 }

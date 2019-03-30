@@ -20,7 +20,7 @@ class UserController extends BaseController
     }
   public function getCountUser(){
     $users = User::get()->count();
-    return response()->json($users, 201);
+    return response()->json($users, 200);
   }
   public function delete($id)
     {
