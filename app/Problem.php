@@ -46,6 +46,6 @@ class Problem extends Model implements AuthenticatableContract, AuthorizableCont
 
     public function company()
     {
-        return $this->belongsTo('App\Company');
+        return $this->belongsTo(Company::class, 'empresa_id');
     }
 }

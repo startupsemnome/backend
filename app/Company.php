@@ -33,7 +33,7 @@ class Company extends Model implements AuthenticatableContract, AuthorizableCont
     ];
 
     public function problem(){
-        return $this->hasMany('App\Problem');
+        return $this->hasMany(Problem::class, 'empresa_id');
     }
     
 }
