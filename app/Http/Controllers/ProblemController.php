@@ -24,6 +24,7 @@ class ProblemController extends BaseController
     $problem->delete();
     return response()->json("Deletado com Sucesso");
   }
+  // Busca de problema por filtro (Empresa, Solicitante)
   public function search(Request $request){
     $problem = Problem::where('empresa','LIKE','%'.$request->search.'%')
     ->orWhere('solicit','LIKE','%'.$request->search.'%')->get();
@@ -32,10 +33,12 @@ class ProblemController extends BaseController
    }
    return response()->json($problem);
   }
+
   public function showOne($id)
   {
     return response()->json(Problem::with("company")->find($id));
   }
+  
   public function update($id, Request $request)
   {
     $problem = Problem::findOrFail($id);

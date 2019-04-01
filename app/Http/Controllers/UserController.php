@@ -47,6 +47,7 @@ class UserController extends BaseController
     {
       return response()->json(User::find($id));
     }
+    
   //função para filtro de busca de Usuarios. 
   public function search(Request $request){
     $user = User::where('name','LIKE','%'.$request->search.'%')
@@ -54,7 +55,7 @@ class UserController extends BaseController
     if(!$user){
       return response()->json("Sem usuario ou habilidade cadastrados ");
    }
-   return response()->json($resource);
+   return response()->json($user);
   }
   
   public function update($id, Request $request)

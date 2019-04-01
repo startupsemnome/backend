@@ -28,6 +28,7 @@ $router->delete('user/{id}',  ['uses' => 'UserController@delete']);
 $router->get('count-user', ['uses' => 'UserController@getCountUser']);
 $router->post('consult-user',  ['uses' => 'UserController@search']);
 
+
 // company
 $router->get('company',  ['uses' => 'CompanyController@showAll']);
 $router->get('company/{id}',  ['uses' => 'CompanyController@showOne']);
@@ -43,6 +44,7 @@ $router->post('problem',  ['uses' => 'ProblemController@create']);
 $router->put('problem/{id}',  ['uses' => 'ProblemController@update']);
 $router->delete('problem/{id}',  ['uses' => 'ProblemController@delete']);
 $router->post('consult-problem',  ['uses' => 'ProblemController@search']);
+
 
 // resource
 $router->get('resource',  ['uses' => 'ResourceController@showAll']);
