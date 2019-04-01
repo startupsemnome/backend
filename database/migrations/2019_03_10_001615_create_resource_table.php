@@ -23,9 +23,12 @@ class CreateResourceTable extends Migration
             $table->string('cel', 100);
             $table->string('cid', 100);
             $table->string('est', 100);
+            $table->boolean('accept_project')->default(false);
             $table->string('hab', 100);
             $table->string('areai', 100);
             $table->string('message1', 100);
+            $table->integer('problem_id')->nullable()->unique()->unsigned();
+            $table->foreign('problem_id')->references('id')->on('problem');
             $table->timestamps();
         });
     }

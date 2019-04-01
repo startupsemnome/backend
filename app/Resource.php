@@ -18,7 +18,7 @@ class Resource extends Model implements AuthenticatableContract, AuthorizableCon
      * @var array
      */
     protected $fillable = [
-        'fname', 'lname','email', 'end','tel','cel','cid','est','hab','areai','message1'
+        'accept_project', 'fname', 'lname','email', 'end','tel','cel','cid','est','hab','areai','message1'
     ];
 
     public $table = "resource";

@@ -15,6 +15,10 @@ $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 
+
+// login
+$router->post('login', ['uses' => 'UserController@login']);
+
 // user
 $router->get('user',  ['uses' => 'UserController@showAll']);
 $router->get('user/{id}',  ['uses' => 'UserController@showOne']);
@@ -43,3 +47,6 @@ $router->get('resource/{id}',  ['uses' => 'ResourceController@showOne']);
 $router->post('resource',  ['uses' => 'ResourceController@create']);
 $router->put('resource/{id}',  ['uses' => 'ResourceController@update']);
 $router->delete('resource/{id}',  ['uses' => 'ResourceController@delete']);
+$router->post('consult-resource',  ['uses' => 'ResourceController@search']);
+
+

@@ -10,7 +10,8 @@ class ProblemController extends BaseController
 {
   public function showAll()
   {
-    return response()->json(Problem::all());
+    $problem = Problem::with("company")->get();
+    return response()->json($problem);
   }
   public function create(Request $request)
   {
@@ -25,7 +26,7 @@ class ProblemController extends BaseController
   }
   public function showOne($id)
   {
-    return response()->json(Problem::find($id));
+    return response()->json(Problem::with("company")->find($id));
   }
   public function update($id, Request $request)
   {
