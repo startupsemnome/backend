@@ -26,16 +26,27 @@ class ResourceController extends BaseController
       return response()->json("Deletado com Sucesso!");
   }
 
+  public function search(Request $request) 
+  {        
+    $query = Resource::where('fname', 'LIKE', '%'. $search .'%')
+    ->orWhere('hab', 'LIKE', '%'. $search .'%');
+    return response()->json($resource, 200);
+  }  
+
+    
+  
   //Comentario. 
   public function showOne($id)
     {
       return response()->json(Resource::find($id));
     }
+
   public function update($id, Request $request)
     {
       $resource = Resource::findOrFail($id);
       $resource->update($request->all());
       return response()->json($resource, 200);
     }
+
 }
 

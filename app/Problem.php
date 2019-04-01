@@ -23,7 +23,7 @@ class Problem extends Model implements AuthenticatableContract, AuthorizableCont
      * Fillabe define as colunas;
      * Table define o nome da tabela;
      * Didden deixa vazio;
-     * Passaword deixa vazio também.
+     * Password deixa vazio também.
 
      */
 
