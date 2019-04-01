@@ -26,19 +26,13 @@ class ResourceController extends BaseController
       return response()->json("Deletado com Sucesso!");
   }
 
-  public function search(Request $request) 
-  {        
-    $query = Resource::where('fname', 'LIKE', '%'. $search .'%')
-    ->orWhere('hab', 'LIKE', '%'. $search .'%');
-    return response()->json($resource, 200);
-  }     
-  
   //Comentario. 
   public function showOne($id)
     {
       return response()->json(Resource::find($id));
     }
- //    public function search(Request $request)
+
+  //    public function search(Request $request)
   // {    
   //   // variavel recebe objeto 
   //   $resource = Resource::where('fname', $request->fname)->where(function ($query) use ($request) {
@@ -46,8 +40,7 @@ class ResourceController extends BaseController
   //           ->orWhere('hab', '=', $request->search);
   //     })->first();
   
-  //função para filtro de busca de recurso.
-  
+  //função para filtro de busca de recurso. 
   public function search(Request $request){
     $resource = Resource::where('fname','LIKE','%'.$request->search.'%')
     ->orWhere('hab','LIKE','%'.$request->search.'%')->get();
@@ -64,6 +57,4 @@ class ResourceController extends BaseController
       $resource->update($request->all());
       return response()->json($resource, 200);
     }
-
 }
-

@@ -47,6 +47,16 @@ class UserController extends BaseController
     {
       return response()->json(User::find($id));
     }
+  //função para filtro de busca de Usuarios. 
+  public function search(Request $request){
+    $user = User::where('name','LIKE','%'.$request->search.'%')
+    ->orWhere('email','LIKE','%'.$request->search.'%')->get();
+    if(!$user){
+      return response()->json("Sem usuario ou habilidade cadastrados ");
+   }
+   return response()->json($resource);
+  }
+  
   public function update($id, Request $request)
     {
       $user = User::findOrFail($id);

@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Laravel\Lumen\Routing\Controller as BaseController;
 
 class ProblemController extends BaseController
-{
+{  
   public function showAll()
   {
     $problem = Problem::with("company")->get();
@@ -23,6 +23,14 @@ class ProblemController extends BaseController
     $problem = Problem::findOrFail($id);
     $problem->delete();
     return response()->json("Deletado com Sucesso");
+  }
+  public function search(Request $request){
+    $problem = Problem::where('empresa','LIKE','%'.$request->search.'%')
+    ->orWhere('solicit','LIKE','%'.$request->search.'%')->get();
+    if(!$problem){
+      return response()->json("Sem empresa ou solicitante cadastrados ");
+   }
+   return response()->json($problem);
   }
   public function showOne($id)
   {

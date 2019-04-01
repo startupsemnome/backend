@@ -18,6 +18,15 @@ class CompanyController extends BaseController
       $company = Company::create($request->all());
       return response()->json($company, 201);
     }
+
+    public function search(Request $request){
+      $company = Company::where('empresa','LIKE','%'.$request->search.'%')
+      ->orWhere('email','LIKE','%'.$request->search.'%')->get();
+      if(!$company){
+        return response()->json("Sem empresa ou email cadastrados ");
+     }
+     return response()->json($company);
+    }
   
   public function delete($id)
     {
