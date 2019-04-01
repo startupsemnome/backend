@@ -38,7 +38,7 @@ class UserController extends BaseController
             ->orWhere('email', '=', $request->login);
       })->first();
     if(!$user){
-      return response()->json("Usuario ou Senha estão incorretos");
+      return abort(401, "Usuario ou Senha inválida");
     } 
     return response()->json($user);
   }
