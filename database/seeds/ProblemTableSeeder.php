@@ -8,16 +8,16 @@ class ProblemTableSeeder extends Seeder
     public function run()
     
     {
-      $empresa = ["google"];
-      $email = ["admin@startupsemnome.com.br"];
-      $telef = ["11 4821-1220"];
-      $nprob = ["nprob"];
+      $empresa = ["google", "São Judas", "Unip", "São Camilo", "Estacio", "Hcor"];
+      $email = ["contato@google.com.br", "contato@usjt.br", "contato@unip.br", "contato@smspbr.com.br", "aluno@estacio.br", "hosp@hcor.com.br"];
+      $telef = ["11 4821-1220", "11 3564-0099", "11 2333-0900", "11 2322-9998", "11 5544-4489", "11 44430-1122"];
+      $nprob = ["Recursos hídricos", "Valor errado no boleto", "Queda de energia", "Tecnologia fraca", "Notas e faltas indevidas", "Falta de equipamentos"];
       $company = Company::all();
       $empresa_id = $company[0]->id;
 
-      for ($i=0; $i < 1; $i++) { 
+      for ($i=0; $i < 6; $i++) { 
         $problem = new Problem;
-        $problem->empresa_id = $empresa_id;
+        $problem->empresa_id = $i+1;
         $problem->email = $email[$i];
         $problem->telef = $telef[$i];
         $problem->nprob = $nprob[$i];

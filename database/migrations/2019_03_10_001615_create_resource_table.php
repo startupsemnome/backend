@@ -27,7 +27,7 @@ class CreateResourceTable extends Migration
             $table->string('hab', 100);
             $table->string('areai', 100);
             $table->string('message1', 100);
-            $table->integer('problem_id')->nullable()->unique()->unsigned();
+            $table->integer('problem_id')->nullable()->unsigned();
             $table->foreign('problem_id')->references('id')->on('problem');
             $table->timestamps();
         });

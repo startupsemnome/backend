@@ -15,7 +15,7 @@ class CreateProblemTable extends Migration
     {
         Schema::create('problem', function (Blueprint $table) {
             $table->increments('id')->unique();
-            $table->integer('empresa_id')->unique()->unsigned();
+            $table->integer('empresa_id')->unsigned();
             $table->foreign('empresa_id')->references('id')->on('company');
             $table->string('solicit', 100)->nullable();
             $table->string('email', 100);
