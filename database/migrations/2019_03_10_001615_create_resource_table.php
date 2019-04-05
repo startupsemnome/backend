@@ -24,6 +24,7 @@ class CreateResourceTable extends Migration
             $table->string('cid', 100);
             $table->string('est', 100);
             $table->boolean('accept_project')->default(false);
+            $table->string('formacao', 100);
             $table->string('hab', 100);
             $table->string('areai', 100);
             $table->string('message1', 100);

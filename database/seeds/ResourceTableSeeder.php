@@ -20,6 +20,7 @@ class ResourceTableSeeder extends Seeder
         $areai = ["Specialist Tecnologia"];
         $message1 = ["goll"];
         $problem_id = [1];
+        $formacao = ["ENSINO SUPERIOR"];
   
         for ($i=0; $i < 1; $i++) { 
           $resource = new Resource;
@@ -33,6 +34,7 @@ class ResourceTableSeeder extends Seeder
           $resource->cid = "São Paulo";
           $resource->accept_project = true;
           $resource->hab = "full stack";
+          $resource->formacao =$formacao[$i];
           $resource->areai = "Specialist Tecnologia";
           $resource->message1 = "goll";
           $resource->problem_id = 1;

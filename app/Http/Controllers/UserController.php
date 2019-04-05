@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Resource;
 use Illuminate\Http\Request;
 use Laravel\Lumen\Routing\Controller as BaseController;
 
@@ -54,7 +55,7 @@ class UserController extends BaseController
     if(!$user){
       return response()->json("Sem usuario ou habilidade cadastrados ");
    }
-   return response()->json($resource);
+   return response()->json($user);
   }
   
   public function update($id, Request $request)
