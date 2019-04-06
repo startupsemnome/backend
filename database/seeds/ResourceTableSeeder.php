@@ -31,7 +31,7 @@ class ResourceTableSeeder extends Seeder
           $resource->tel = $tel[$i];
           $resource->end = $end[$i];
           $resource->cel = $cel[$i];
-          $formacao = $formacao[0];
+          $resource->formacao = $formacao[0];
           $resource->cid = $cid[$i];
           $resource->accept_project = $accept_project[$i];
           $resource->hab = $hab[$i];
