@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
 use App\Resource;
 use Illuminate\Http\Request;
 use Laravel\Lumen\Routing\Controller as BaseController;
@@ -50,7 +53,28 @@ class ResourceController extends BaseController
    return response()->json($resource);
   }
   
-  
+  public function sendMail(){
+    
+    $mail = new PHPMailer;
+    // $mail->SMTPDebug = 2;
+    print(getenv('MAIL_HOST'));
+    $mail->IsSMTP();
+    $mail->SMTPAuth  = true;
+    $mail->Charset   = 'utf8_decode()';
+    $mail->Host  = getenv('MAIL_HOST');
+    $mail->Port  = getenv('MAIL_PORT');
+    $mail->Username  = getenv('MAIL_USERNAME');
+    $mail->Password  = getenv('MAIL_PASSWORD');
+    $mail->From  = 'startupsemnome@gmail.com';
+    // isset($email['attachment']) ? $mail->addAttachment($email['attachment']) : null;
+    $mail->FromName  = utf8_decode('startupsemnome@gmail.com');
+    $mail->IsHTML(true);
+    $mail->Subject  = utf8_decode('assunto');
+    $mail->Body  = utf8_decode('corpo');
+    $mail->AddAddress(utf8_decode('startupsemnome@gmail.com'));
+    $mail->Send();
+  }
+
   public function update($id, Request $request)
     {
       $resource = Resource::findOrFail($id);
