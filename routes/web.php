@@ -16,7 +16,7 @@ $router->get('/', function () use ($router) {
 });
 
 // email 
-$router->post('send-mail',  ['uses' => 'EmailController@sendMail']);
+$router->post('send-email',  ['uses' => 'EmailController@sendMail']);
 
 // login
 $router->post('login', ['uses' => 'UserController@login']);
