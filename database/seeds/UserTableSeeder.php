@@ -14,7 +14,7 @@ class UserTableSeeder extends Seeder
       for ($i=0; $i < 6; $i++) { 
         $user = new User;
         $user->name = $name[$i];
-        $user->email = $email[0];
+        $user->email = $email[$i];
         $user->password = $senha[0];
         $user->save();
       }  
