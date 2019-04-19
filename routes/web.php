@@ -54,4 +54,6 @@ $router->put('resource/{id}',  ['uses' => 'ResourceController@update']);
 $router->delete('resource/{id}',  ['uses' => 'ResourceController@delete']);
 $router->post('consult-resource',  ['uses' => 'ResourceController@search']);
 
+// email
+$router->post('send-email',  ['uses' => 'MailController@send']);
 
