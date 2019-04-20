@@ -15,6 +15,8 @@ $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 
+// email 
+$router->post('send-email',  ['uses' => 'EmailController@sendMail']);
 
 // login
 $router->post('login', ['uses' => 'UserController@login']);
@@ -56,4 +58,5 @@ $router->post('consult-resource',  ['uses' => 'ResourceController@search']);
 
 // email
 $router->post('send-email',  ['uses' => 'MailController@send']);
+
 

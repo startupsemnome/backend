@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
 use App\Resource;
 use Illuminate\Http\Request;
 use Laravel\Lumen\Routing\Controller as BaseController;
@@ -49,7 +52,6 @@ class ResourceController extends BaseController
    }
    return response()->json($resource);
   }
-  
   
   public function update($id, Request $request)
     {
