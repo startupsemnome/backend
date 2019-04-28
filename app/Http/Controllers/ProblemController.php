@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Problem;
+use App\Company;;
+
 use Illuminate\Http\Request;
 use Laravel\Lumen\Routing\Controller as BaseController;
 
@@ -18,6 +20,12 @@ class ProblemController extends BaseController
     $problem = Problem::create($request->all());
     return response()->json($problem, 201);
   }
+
+  public function getCountProblem(){
+    $problems = Problem::get()->count();
+    return response()->json($problems, 200);
+  }
+
   public function delete($id)
   {
     $problem = Problem::findOrFail($id);
