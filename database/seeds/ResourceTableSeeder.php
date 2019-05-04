@@ -7,8 +7,8 @@ class ResourceTableSeeder extends Seeder
     public function run()
     
     {
-        $primeiro_nome = ["Julio Henrique", "Sidny", "Monique", "Wandell", "Leonardo", "Josevaldo"];
-        $segundo_nome = ["dos Santos", "Molina", "Monteiro", "Rodrigues", "Santiago", "Lima"];
+        $nome = ["Julio Henrique", "Sidny", "Monique", "Wandell", "Leonardo", "Josevaldo"];
+        $sobrenome = ["dos Santos", "Molina", "Monteiro", "Rodrigues", "Santiago", "Lima"];
         $estado = ["SP", "SP","SP","SP", "SP", "RJ"];
         $email = ["admin@startupsemnome.com.br", "sidny@startupsemnome.com.br", "monique@startupsemnome.com.br", "wandell@startupsemnome.com.br", "santiago@startupsemnome.com.br", "josevaldo@startupsemnome.com.br"];
         $telefone = ["11 4821-1220", "11 3434-9988", "11 6454-0990", "11 3489-4444", "11 2322-1122", "22 2345-9890"];
@@ -24,8 +24,8 @@ class ResourceTableSeeder extends Seeder
   
         for ($i=0; $i < 6; $i++) { 
           $resource = new Resource;
-          $resource->primeiro_nome = $primeiro_nome[$i];
-          $resource->segundo_nome = $segundo_nome[$i];
+          $resource->nome = $nome[$i];
+          $resource->sobrenome = $sobrenome[$i];
           $resource->estado = $estado[$i];
           $resource->email = $email[$i];
           $resource->telefone = $telefone[$i];
