@@ -6,6 +6,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
 use App\Resource;
+use App\Company;
 use Illuminate\Http\Request;
 use Laravel\Lumen\Routing\Controller as BaseController;
 
@@ -21,6 +22,11 @@ class ResourceController extends BaseController
       $resource= Resource::create($request->all());
       return response()->json($resource, 201);
     }
+
+    public function getCountResource(){
+      $resources = Resource::get()->count();
+      return response()->json($resources, 200);
+    }
   
   public function delete($id)
     {
@@ -35,13 +41,7 @@ class ResourceController extends BaseController
       return response()->json(Resource::find($id));
     }
 
-  //    public function search(Request $request)
-  // {    
-  //   // variavel recebe objeto 
-  //   $resource = Resource::where('fname', $request->fname)->where(function ($query) use ($request) {
-  //     $query->where('fname', '=', $request->search)
-  //           ->orWhere('hab', '=', $request->search);
-  //     })->first();
+
   
   //função para filtro de busca de recurso. 
   public function search(Request $request){
