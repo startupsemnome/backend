@@ -18,7 +18,7 @@ class ResourceProblemController extends BaseController {
     //ResourceProblem::with('problem')->where('resource_id', $id)->get()
     return response()->json(ResourceProblem::with(['problem' => function($query){
       $query->with('company');
-    }])->get());
+    }])->where('resource_id', $id)->get());
   }
   
   public function showOneProblem($id)
