@@ -32,10 +32,11 @@ class ResourceProblemController extends BaseController {
     return response()->json(Resource::all());
   }
       
-  public function update($id, Request $request)
+  public function update(Request $request)
   {
-    $resource = Resource::findOrFail($id);
-    $resource->update($request->all());
+    $resource = ResourceProblem::findOrFail($request->id);
+    $resource->status = $request->status;
+    $resource->update();
     return response()->json($resource, 200);
   }
 }
