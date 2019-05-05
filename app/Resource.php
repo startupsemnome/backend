@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 
-class User extends Model implements AuthenticatableContract, AuthorizableContract
+class Resource extends Model implements AuthenticatableContract, AuthorizableContract
 {
     use Authenticatable, Authorizable;
 
@@ -18,9 +18,17 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password'
+        'accept_project', 'nome', 'sobrenome','email', 'end','tel','cel','cid','est','hab','areai','message1'
     ];
 
-    public $table = "user";
+    public $table = "resource";
 
+    /**
+     * The attributes excluded from the model's JSON forms.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'password',
+    ];
 }
