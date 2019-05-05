@@ -14,8 +14,11 @@ use Laravel\Lumen\Routing\Controller as BaseController;
 class ResourceProblemController extends BaseController {
   
   public function showOneResouce($id)
-  {      
-    return response()->json(ResourceProblem::with('problem')->where('resource_id', $id)->get());
+  {   
+    //ResourceProblem::with('problem')->where('resource_id', $id)->get()
+    return response()->json(ResourceProblem::with(['problem' => function($query){
+      $query->with('company');
+    }])->get());
   }
   
   public function showOneProblem($id)
