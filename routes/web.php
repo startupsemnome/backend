@@ -30,7 +30,6 @@ $router->delete('user/{id}',  ['uses' => 'UserController@delete']);
 $router->get('count-user', ['uses' => 'UserController@getCountUser']);
 $router->post('consult-user',  ['uses' => 'UserController@search']);
 
-
 // company
 $router->get('company',  ['uses' => 'CompanyController@showAll']);
 $router->get('company/{id}',  ['uses' => 'CompanyController@showOne']);
@@ -62,5 +61,6 @@ $router->get('count-resource', ['uses' => 'ResourceController@getCountResource']
 
 // email
 $router->post('send-email',  ['uses' => 'MailController@send']);
+$router->post('communicate-resource',  ['uses' => 'MailController@communicateResources']);
 
 
