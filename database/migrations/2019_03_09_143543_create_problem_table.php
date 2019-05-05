@@ -17,10 +17,11 @@ class CreateProblemTable extends Migration
             $table->increments('id')->unique();
             $table->integer('empresa_id')->unsigned();
             $table->foreign('empresa_id')->references('id')->on('company');
-            $table->string('solicit', 100)->nullable();
+            $table->string('solicitante', 100)->nullable();
             $table->string('email', 100);
-            $table->string('telef', 100);
-            $table->string('nprob', 100);
+            $table->string('telefone', 100);
+            $table->string('titulo', 100);
+            $table->string('descricao', 500);
             $table->timestamps();
             $table->softDeletes();
         });

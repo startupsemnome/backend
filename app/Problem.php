@@ -30,7 +30,7 @@ class Problem extends Model implements AuthenticatableContract, AuthorizableCont
 
 
     protected $fillable = [
-        'id', 'empresa', 'solicit', 'email', 'telef', 'nprob', 'empresa_id'
+        'id', 'empresa', 'solicitante', 'email', 'telefone', 'titulo', 'descricao', 'empresa_id'
     ];
 
     public $table = "problem";

@@ -35,7 +35,7 @@ class ProblemController extends BaseController
   // Busca de problema por filtro (Empresa, Solicitante)
   public function search(Request $request){
     $problem = Problem::where('empresa','LIKE','%'.$request->search.'%')
-    ->orWhere('solicit','LIKE','%'.$request->search.'%')->get();
+    ->orWhere('solicitante','LIKE','%'.$request->search.'%')->get();
     if(!$problem){
       return response()->json("Sem empresa ou solicitante cadastrados ");
    }
