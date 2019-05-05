@@ -63,4 +63,10 @@ $router->get('count-resource', ['uses' => 'ResourceController@getCountResource']
 $router->post('send-email',  ['uses' => 'MailController@send']);
 $router->post('communicate-resource',  ['uses' => 'MailController@communicateResources']);
 
+// resource problem
+$router->post('resource-problem',  ['uses' => 'ResourceProblemController@create']);
+$router->put('resource-problem',  ['uses' => 'ResourceProblemController@update']);
+$router->get('resource-problem/resource/{id}',  ['uses' => 'ResourceProblemController@showOneResouce']);
+$router->get('resource-problem/problem/{id}',  ['uses' => 'ResourceProblemController@showOneProblem']);
+
 

@@ -21,11 +21,11 @@ class ResourceTableSeeder extends Seeder
         $area_interesse = ["Tecnologia", "Tecnologia e Gestão", "Tecnologia e Gestão", "Tecnologia", "Gestão, Negócios e Tecnologia", "Engenharias"];
         $message1 = ["goll", "goll", "goll", "goll", "goll", "goll"]; 
         $problem_id = [1]; 
-  
+        
         for ($i=0; $i < 6; $i++) { 
           $resource = new Resource;
-          $resource->primeiro_nome = $primeiro_nome[$i];
-          $resource->segundo_nome = $segundo_nome[$i];
+          $resource->nome = $primeiro_nome[$i];
+          $resource->sobrenome = $segundo_nome[$i];
           $resource->estado = $estado[$i];
           $resource->email = $email[$i];
           $resource->telefone = $telefone[$i];
