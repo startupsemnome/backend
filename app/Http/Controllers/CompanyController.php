@@ -27,8 +27,8 @@ class CompanyController extends BaseController
     }
 
     public function search(Request $request){
-      $company = Company::where('empresa','LIKE','%'.$request->search.'%')
-      ->orWhere('email','LIKE','%'.$request->search.'%')->get();
+      $company = Company::where('razaoSocial','LIKE','%'.$request->search.'%')
+      ->orWhere('emailRepresentante','LIKE','%'.$request->search.'%')->get();
       if(!$company){
         return response()->json("Sem empresa ou email cadastrados ");
      }
