@@ -35,14 +35,6 @@ class ResourceController extends BaseController
       return response()->json(Resource::find($id));
     }
 
-  //    public function search(Request $request)
-  // {    
-  //   // variavel recebe objeto 
-  //   $resource = Resource::where('fname', $request->fname)->where(function ($query) use ($request) {
-  //     $query->where('fname', '=', $request->search)
-  //           ->orWhere('hab', '=', $request->search);
-  //     })->first();
-  
   //função para filtro de busca de recurso. 
   public function search(Request $request){
     $resource = Resource::where('nome','LIKE','%'.$request->search.'%')

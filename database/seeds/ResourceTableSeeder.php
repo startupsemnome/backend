@@ -7,8 +7,8 @@ class ResourceTableSeeder extends Seeder
     public function run()
     
     {
-        $primeiro_nome = ["Julio Henrique", "Sidny", "Monique", "Wandell", "Leonardo", "Josevaldo"];
-        $segundo_nome = ["dos Santos", "Molina", "Monteiro", "Rodrigues", "Santiago", "Lima"];
+        $nome = ["Julio Henrique", "Sidny", "Monique", "Wandell", "Leonardo", "Josevaldo"];
+        $sobrenome = ["dos Santos", "Molina", "Monteiro", "Rodrigues", "Santiago", "Lima"];
         $estado = ["SP", "SP","SP","SP", "SP", "RJ"];
         $email = ["admin@startupsemnome.com.br", "sidny@startupsemnome.com.br", "monique@startupsemnome.com.br", "wandell@startupsemnome.com.br", "santiago@startupsemnome.com.br", "josevaldo@startupsemnome.com.br"];
         $telefone = ["11 4821-1220", "11 3434-9988", "11 6454-0990", "11 3489-4444", "11 2322-1122", "22 2345-9890"];
@@ -16,7 +16,7 @@ class ResourceTableSeeder extends Seeder
         $celular = ["11 94821-1220", "11 98876-0909", "11 9878-8877", "11 92223-2938", "11 92345-9789", "22 98980-0012"];
         $cidade = ["São Paulo", "São Paulo", "São Paulo", "São Paulo", "São Paulo", "Rio de Janeiro"];
         $accept_project = [true, false, false, true, true, true]; 
-        $formacao = ["ENSINO SUPERIOR"];
+        $formacao = ["ENSINO SUPERIOR","ENSINO MEDIO"];
         $habilidades = ["Full Stack", "Frontend e Backend", "Full Stack", "Frontend e Backend", "Gestão de Negócios", "Administrador de Dados"];
         $area_interesse = ["Tecnologia", "Tecnologia e Gestão", "Tecnologia e Gestão", "Tecnologia", "Gestão, Negócios e Tecnologia", "Engenharias"];
         $message1 = ["goll", "goll", "goll", "goll", "goll", "goll"]; 
@@ -24,14 +24,14 @@ class ResourceTableSeeder extends Seeder
   
         for ($i=0; $i < 6; $i++) { 
           $resource = new Resource;
-          $resource->primeiro_nome = $primeiro_nome[$i];
-          $resource->segundo_nome = $segundo_nome[$i];
+          $resource->nome = $nome[$i];
+          $resource->sobrenome = $sobrenome[$i];
           $resource->estado = $estado[$i];
           $resource->email = $email[$i];
           $resource->telefone = $telefone[$i];
           $resource->endereco = $endereco[$i];
           $resource->celular = $celular[$i];
-          $resource->formacao = $formacao[0];
+          $resource->formacao = $formacao[$i];
           $resource->cidade = $cidade[$i];
           $resource->accept_project = $accept_project[$i];
           $resource->habilidades = $habilidades[$i];
