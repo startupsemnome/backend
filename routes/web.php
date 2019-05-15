@@ -38,6 +38,7 @@ $router->put('company/{id}',  ['uses' => 'CompanyController@update']);
 $router->delete('company/{id}',  ['uses' => 'CompanyController@delete']);
 $router->post('consult-company',  ['uses' => 'CompanyController@search']);
 $router->get('count-company', ['uses' => 'CompanyController@getCountCompany']);
+$router->get('names-company', ['uses' => 'CompanyController@getNamesCompany']);
 
 
 // problem 

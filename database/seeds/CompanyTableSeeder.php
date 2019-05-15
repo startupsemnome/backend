@@ -8,7 +8,7 @@ class CompanyTableSeeder extends Seeder
     
     {
 
-        $empresa = ["google", "Microsoft", "Dell", "LG", "Samsung", "Unip"];
+        $empresa = ["Google", "Microsoft", "Dell", "LG", "Samsung", "Unip"];
         $cnpj = ["3902903209", "3902903209", "3902903209", "3902903209", "3902903209", "3902903209"];
         $tele = ["11 4821-1220", "11 23232-9900", "11 4455-7788", "11 2626-6751", "11 2356-9900", "11 4435-9900"];
         $email = ["google@startupsemnome.com.br", "contato@microsoft.com.br", "contato@dell.br", "lg@lg.com.br", "s10@samsung.co.br", "unip@unip.com,br"];
