@@ -41,8 +41,11 @@ class ResourceController extends BaseController
       return response()->json(Resource::find($id));
     }
 
+<<<<<<< HEAD
 
   
+=======
+>>>>>>> f255abf3b32006ada03e0c1ac9dc38d3ddc1db57
   //função para filtro de busca de recurso. 
   public function search(Request $request){
     $resource = Resource::where('nome','LIKE','%'.$request->search.'%')
