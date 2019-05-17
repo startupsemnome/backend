@@ -70,4 +70,9 @@ $router->put('resource-problem',  ['uses' => 'ResourceProblemController@update']
 $router->get('resource-problem/resource/{id}',  ['uses' => 'ResourceProblemController@showOneResouce']);
 $router->get('resource-problem/problem/{id}',  ['uses' => 'ResourceProblemController@showOneProblem']);
 
+// category
+$router->post('category',  ['uses' => 'CategoryController@create']);
+$router->put('category/{id}',  ['uses' => 'CategoryController@update']);
+$router->get('category/{id}',  ['uses' => 'CategoryController@showOneCategory']);
+$router->get('category',  ['uses' => 'CategoryController@show']);
 
