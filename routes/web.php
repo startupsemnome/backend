@@ -76,3 +76,6 @@ $router->put('category/{id}',  ['uses' => 'CategoryController@update']);
 $router->get('category/{id}',  ['uses' => 'CategoryController@showOneCategory']);
 $router->get('category',  ['uses' => 'CategoryController@show']);
 
+// resource
+$router->get('/resource-aceept/{id}', ['uses' => 'ProblemController@resourceAccept']);
+

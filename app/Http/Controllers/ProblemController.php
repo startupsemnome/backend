@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Problem;
-use App\Company;;
+use App\Company;
+use App\ResourceProblem;
 
 use Illuminate\Http\Request;
 use Laravel\Lumen\Routing\Controller as BaseController;
@@ -12,7 +13,7 @@ class ProblemController extends BaseController
 {  
   public function showAll()
   {
-    $problem = Problem::with("company")->get();
+  $problem = Problem::with(["company","categoryProblem"])->get();
     return response()->json($problem);
   }
   public function create(Request $request)
@@ -44,7 +45,7 @@ class ProblemController extends BaseController
 
   public function showOne($id)
   {
-    return response()->json(Problem::with("company")->find($id));
+    return response()->json(Problem::with(["company","categoryProblem"])->find($id));
   }
   
   public function update($id, Request $request)
@@ -52,6 +53,12 @@ class ProblemController extends BaseController
     $problem = Problem::findOrFail($id);
     $problem->update($request->all());
     return response()->json($problem, 200);
+  }
+
+  public function resourceAccept($id){
+
+    $problems = ResourceProblem::where('problem_id', $id)->where('status', 'AGUARDANDO-CONTATO')->with('resource')->get();
+    return response()->json($problems, 200);
   }
 }
 
