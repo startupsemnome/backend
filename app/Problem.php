@@ -30,7 +30,7 @@ class Problem extends Model implements AuthenticatableContract, AuthorizableCont
 
 
     protected $fillable = [
-        'id', 'empresa', 'solicit', 'email', 'telef', 'nprob', 'empresa_id'
+        'id', 'empresa', 'solicitante', 'email', 'telefone', 'titulo', 'descricao', 'empresa_id'
     ];
 
     public $table = "problem";
@@ -47,5 +47,9 @@ class Problem extends Model implements AuthenticatableContract, AuthorizableCont
     public function company()
     {
         return $this->belongsTo(Company::class, 'empresa_id');
+    }
+
+    public function categoryProblem(){
+        return $this->hasMany('App\CategoryProblem', 'problem_id');
     }
 }

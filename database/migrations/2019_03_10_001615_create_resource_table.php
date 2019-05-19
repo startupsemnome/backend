@@ -29,7 +29,7 @@ class CreateResourceTable extends Migration
             $table->string('area_interesse', 100);
             $table->string('message1', 100);
             $table->integer('problem_id')->nullable()->unsigned();
-            $table->foreign('problem_id')->references('id')->on('problem');
+            $table->foreign('problem_id')->references('id')->on('problem');            
             $table->timestamps();
         });
     }
