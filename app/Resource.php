@@ -18,7 +18,18 @@ class Resource extends Model implements AuthenticatableContract, AuthorizableCon
      * @var array
      */
     protected $fillable = [
-        'accept_project', 'nome', 'sobrenome','email', 'endereco','telefone','celular','cidade','estado','habilidades','area_interesse','message1'
+        
+        //DADOS PESSOAIS
+        'accept_project', 'nome', 'sobrenome','email', 'senha',
+        'fotoperfil', 'dt_nascimento', 'genero','estado_civil', 'nacionalidade', 'uf', 'cidade', 
+        'disponibilidade', 'resumo_profissional','message1',
+
+        //EXPERIENCIA PROFISSIONAL
+        'empresa', 'segmento', 'dt_inicio_saida', 'cargo', 'atividades',
+
+        //FORMACAO
+        'curso', 'instituicao', 'nivel_curso', 'dt_inicio_fim', 'indo_complementares'
+
     ];
 
     public $table = "resource";
