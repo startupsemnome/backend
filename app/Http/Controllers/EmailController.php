@@ -10,6 +10,7 @@ use Laravel\Lumen\Routing\Controller as BaseController;
 
 class EmailController extends BaseController
 {
+
   public function sendMail(Request $request){
       
     $mail = new PHPMailer;
