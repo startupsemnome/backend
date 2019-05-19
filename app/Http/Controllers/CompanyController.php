@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Company;
+use App\Problem;
+
 use Illuminate\Http\Request;
 use Laravel\Lumen\Routing\Controller as BaseController;
 
@@ -17,6 +19,16 @@ class CompanyController extends BaseController
     {
       $company = Company::create($request->all());
       return response()->json($company, 201);
+    }
+
+    public function getCountCompany(){
+      $companys = Company::get()->count();
+      return response()->json($companys, 200);
+    }
+
+    public function getNamesCompany(Request $request){
+      $names = Company::where('empresa','LIKE','%'.$request->search.'%')->get();
+      return response()->json($company);
     }
 
     public function search(Request $request){

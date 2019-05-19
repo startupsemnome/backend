@@ -15,6 +15,8 @@ $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 
+// email 
+$router->post('send-email',  ['uses' => 'EmailController@sendMail']);
 
 // login
 $router->post('login', ['uses' => 'UserController@login']);
@@ -28,7 +30,6 @@ $router->delete('user/{id}',  ['uses' => 'UserController@delete']);
 $router->get('count-user', ['uses' => 'UserController@getCountUser']);
 $router->post('consult-user',  ['uses' => 'UserController@search']);
 
-
 // company
 $router->get('company',  ['uses' => 'CompanyController@showAll']);
 $router->get('company/{id}',  ['uses' => 'CompanyController@showOne']);
@@ -36,6 +37,9 @@ $router->post('company',  ['uses' => 'CompanyController@create']);
 $router->put('company/{id}',  ['uses' => 'CompanyController@update']);
 $router->delete('company/{id}',  ['uses' => 'CompanyController@delete']);
 $router->post('consult-company',  ['uses' => 'CompanyController@search']);
+$router->get('count-company', ['uses' => 'CompanyController@getCountCompany']);
+$router->get('names-company', ['uses' => 'CompanyController@getNamesCompany']);
+
 
 // problem 
 $router->get('problem',  ['uses' => 'ProblemController@showAll']);
@@ -44,6 +48,7 @@ $router->post('problem',  ['uses' => 'ProblemController@create']);
 $router->put('problem/{id}',  ['uses' => 'ProblemController@update']);
 $router->delete('problem/{id}',  ['uses' => 'ProblemController@delete']);
 $router->post('consult-problem',  ['uses' => 'ProblemController@search']);
+$router->get('count-problem', ['uses' => 'ProblemController@getCountProblem']);
 
 
 // resource
@@ -53,5 +58,24 @@ $router->post('resource',  ['uses' => 'ResourceController@create']);
 $router->put('resource/{id}',  ['uses' => 'ResourceController@update']);
 $router->delete('resource/{id}',  ['uses' => 'ResourceController@delete']);
 $router->post('consult-resource',  ['uses' => 'ResourceController@search']);
+$router->get('count-resource', ['uses' => 'ResourceController@getCountResource']);
 
+// email
+$router->post('send-email',  ['uses' => 'MailController@send']);
+$router->post('communicate-resource',  ['uses' => 'MailController@communicateResources']);
+
+// resource problem
+$router->post('resource-problem',  ['uses' => 'ResourceProblemController@create']);
+$router->put('resource-problem',  ['uses' => 'ResourceProblemController@update']);
+$router->get('resource-problem/resource/{id}',  ['uses' => 'ResourceProblemController@showOneResouce']);
+$router->get('resource-problem/problem/{id}',  ['uses' => 'ResourceProblemController@showOneProblem']);
+
+// category
+$router->post('category',  ['uses' => 'CategoryController@create']);
+$router->put('category/{id}',  ['uses' => 'CategoryController@update']);
+$router->get('category/{id}',  ['uses' => 'CategoryController@showOneCategory']);
+$router->get('category',  ['uses' => 'CategoryController@show']);
+
+// resource
+$router->get('/resource-aceept/{id}', ['uses' => 'ProblemController@resourceAccept']);
 

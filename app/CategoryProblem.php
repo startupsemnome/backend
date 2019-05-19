@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 
-class Resource extends Model implements AuthenticatableContract, AuthorizableContract
+class CategoryProblem extends Model implements AuthenticatableContract, AuthorizableContract
 {
     use Authenticatable, Authorizable;
 
@@ -18,17 +18,25 @@ class Resource extends Model implements AuthenticatableContract, AuthorizableCon
      * @var array
      */
     protected $fillable = [
-        'accept_project', 'nome', 'sobrenome','email', 'endereco','telefone','celular','cidade','estado','habilidades','area_interesse','message1'
+        'id', 'category_id', 'problem_id'
     ];
 
-    public $table = "resource";
+    public $table = "category_problem";
 
     /**
-     * The attributes excluded from the model's JSON forms.
+     * The attributes excluded from the model's JSON form.
      *
      * @var array
      */
-    protected $hidden = [
-        'password',
-    ];
+
+    public function problem()
+    {
+        return $this->belongsTo('App\Problem');
+    }
+
+    public function category()
+    {
+        return $this->belongsTo('App\Category');
+    }
+    
 }
