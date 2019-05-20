@@ -21,14 +21,14 @@ class Resource extends Model implements AuthenticatableContract, AuthorizableCon
         
         //DADOS PESSOAIS
         'accept_project', 'nome', 'sobrenome','email', 'senha',
-        'fotoperfil', 'dt_nascimento', 'genero','estado_civil', 'nacionalidade', 'uf', 'cidade', 
+        'fotoperfil', 'dt_nascimento', 'genero','estado_civil', 'nacionalidade', 'uf', 'cidade', 'categoria',
         'disponibilidade', 'resumo_profissional','message1',
 
         //EXPERIENCIA PROFISSIONAL
         'empresa', 'segmento', 'dt_inicio_saida', 'cargo', 'atividades',
 
         //FORMACAO
-        'curso', 'instituicao', 'nivel_curso', 'dt_inicio_fim', 'indo_complementares'
+        'curso', 'instituicao', 'nivel_curso', 'dt_inicio_fim', 'info_complementares'
 
     ];
 

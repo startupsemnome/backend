@@ -15,26 +15,27 @@ class CreateResourceTable extends Migration
     {
         Schema::create('resource', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nome', 50);
-            $table->string('sobrenome', 50);
-            $table->string('email', 50);
-            $table->string('senha', 50);
+            $table->string('nome', 50)->nullable();
+            $table->string('sobrenome', 50)->nullable();
+            $table->string('email', 50)->nullable();
+            $table->string('senha', 50)->nullable();
 
             //DADOS PESSOAIS
-            $table->string('fotoperfil', 50);
+            $table->string('fotoperfil', 50)->nullable();
             $table->string('dt_nascimento', 50);
             $table->string('genero', 50);
             $table->string('estado_civil', 50);
-            $table->string('nacionalidade', 50);
+            $table->string('nacionalidade', 50)->nullable();
             $table->string('uf', 50);
             $table->string('cidade', 50);
             $table->string('disponibilidade', 50);
             $table->string('resumo_profissional', 500);
+            $table->string('categoria', 500);
 
             //EXPERIENCIA PROFISSIONAL
             $table->string('empresa', 100);
             $table->string('segmento', 100);
-            $table->string('dt_inicio_saida', 50);
+            $table->string('dt_inicio_saida', 50)->nullable();
             $table->string('cargo', 100);
             $table->string('atividades', 100);
 
@@ -42,12 +43,12 @@ class CreateResourceTable extends Migration
             $table->string('curso', 100);
             $table->string('instituicao', 100);
             $table->string('nivel_curso', 100);
-            $table->string('dt_inicio_fim', 100);
+            $table->string('dt_inicio_fim', 100)->nullable();
             $table->string('info_complementares', 100);
 
             //MANTIDO
             $table->boolean('accept_project')->default(false);
-            $table->string('formacao', 100);
+            $table->string('formacao', 100)->nullable();
             $table->integer('problem_id')->nullable()->unsigned();
             $table->foreign('problem_id')->references('id')->on('problem');            
             $table->timestamps();

@@ -22,6 +22,7 @@ class ResourceTableSeeder extends Seeder
         $cidade = ["São Paulo", "São Paulo", "Canela", "Piranguinho", "São Paulo", "Paraty"];
         $disponibilidade = ["Semanal", "Semanal", "Semanal", "Semanal", "Semanal", "Semanal"];
         $resumo_profissional = ["Minha vida toda como Full Stack", "Minha vida toda como Analista de Projetos", "Minha vida toda como PMO", "Minha vida toda como Especialista", "Minha vida toda como Especialista", "Minha vida toda como Especialista"];
+        $categoria = ["Tecnologia", "Tecnologia", "Tecnologia", "Engenharia Eletrônica", "Arquitetura", "Arquitetura"];
 
         //EXPERIENCIA PROFISSIONAL
         $empresa = ["Microsoft", "Microsoft","Microsoft","Dell", "AgroTec", "AgroTec"];
@@ -66,6 +67,7 @@ class ResourceTableSeeder extends Seeder
           $resource->cidade = $cidade[$i];
           $resource->disponibilidade = $disponibilidade[$i];
           $resource->resumo_profissional = $resumo_profissional[$i];
+          $resource->categoria = $categoria[$i];
 
           //EXPERIÊNCIA PROFISSIONAL
           $resource->empresa = $empresa[$i];
