@@ -26,9 +26,14 @@ class CompanyController extends BaseController
       return response()->json($companys, 200);
     }
 
+    public function getNamesCompany(Request $request){
+      $names = Company::where('empresa','LIKE','%'.$request->search.'%')->get();
+      return response()->json($company);
+    }
+
     public function search(Request $request){
-      $company = Company::where('empresa','LIKE','%'.$request->search.'%')
-      ->orWhere('email','LIKE','%'.$request->search.'%')->get();
+      $company = Company::where('razaoSocial','LIKE','%'.$request->search.'%')
+      ->orWhere('emailRepresentante','LIKE','%'.$request->search.'%')->get();
       if(!$company){
         return response()->json("Sem empresa ou email cadastrados ");
      }

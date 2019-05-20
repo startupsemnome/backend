@@ -48,4 +48,8 @@ class Problem extends Model implements AuthenticatableContract, AuthorizableCont
     {
         return $this->belongsTo(Company::class, 'empresa_id');
     }
+
+    public function categoryProblem(){
+        return $this->hasMany('App\CategoryProblem', 'problem_id');
+    }
 }
