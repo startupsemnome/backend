@@ -25,10 +25,10 @@ class Resource extends Model implements AuthenticatableContract, AuthorizableCon
         'disponibilidade', 'resumo_profissional','message1',
 
         //EXPERIENCIA PROFISSIONAL
-        'empresa', 'segmento', 'dt_inicio_saida', 'cargo', 'atividades',
+        'empresa', 'segmento', 'dt_empresa_inicio', 'dt_empresa_saida', 'cargo', 'atividades',
 
         //FORMACAO
-        'curso', 'instituicao', 'nivel_curso', 'dt_inicio_fim', 'info_complementares'
+        'curso', 'instituicao', 'nivel_curso', 'dt_curso_inicio', 'dt_curso_conclusao', 'info_complementares'
 
     ];
 

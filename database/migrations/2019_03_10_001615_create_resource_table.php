@@ -22,7 +22,7 @@ class CreateResourceTable extends Migration
 
             //DADOS PESSOAIS
             $table->string('fotoperfil', 50)->nullable();
-            $table->string('dt_nascimento', 50);
+            $table->string('dt_nascimento', 50)->nullable();
             $table->string('genero', 50);
             $table->string('estado_civil', 50);
             $table->string('nacionalidade', 50)->nullable();
@@ -35,7 +35,8 @@ class CreateResourceTable extends Migration
             //EXPERIENCIA PROFISSIONAL
             $table->string('empresa', 100);
             $table->string('segmento', 100);
-            $table->string('dt_inicio_saida', 50)->nullable();
+            $table->string('dt_empresa_inicio', 50)->nullable();
+            $table->string('dt_empresa_saida', 50)->nullable();
             $table->string('cargo', 100);
             $table->string('atividades', 100);
 
@@ -43,7 +44,8 @@ class CreateResourceTable extends Migration
             $table->string('curso', 100);
             $table->string('instituicao', 100);
             $table->string('nivel_curso', 100);
-            $table->string('dt_inicio_fim', 100)->nullable();
+            $table->string('dt_curso_inicio', 100)->nullable();
+            $table->string('dt_curso_conclusao', 100)->nullable();
             $table->string('info_complementares', 100);
 
             //MANTIDO

@@ -27,7 +27,8 @@ class ResourceTableSeeder extends Seeder
         //EXPERIENCIA PROFISSIONAL
         $empresa = ["Microsoft", "Microsoft","Microsoft","Dell", "AgroTec", "AgroTec"];
         $segmento = ["Tecnologia", "Tecnologia","Tecnologia","Tecnologia", "Agronomia", "Agronomia"];
-        $dt_inicio_saida = ["19/01/1998-19/08/2000", "19/01/1998-19/08/2000","19/01/1998-19/08/2000","09/08/2000-08/09/2018", "09/08/2000-08/09/2018", "09/08/2000-08/09/2018"];
+        $dt_empresa_inicio = ["19/01/1998-19/08/2000", "19/01/1998-19/08/2000","19/01/1998-19/08/2000","09/08/2000-08/09/2018", "09/08/2000-08/09/2018", "09/08/2000-08/09/2018"];
+        $dt_empresa_saida = ["19/01/1998-19/08/2000", "19/01/1998-19/08/2000","19/01/1998-19/08/2000","09/08/2000-08/09/2018", "09/08/2000-08/09/2018", "09/08/2000-08/09/2018"];
         $cargo = ["Full Stack", "Analista de Projetos","PMO","Especialista de Desenvolvimento", "Especialista de Desenvolvimento", "Especialista de Negócios"];
         $atividades = ["Desenvolver", "Analistar","Gerenciar","Gerenciar", "Gerenciar", "Gerenciar"];
 
@@ -35,7 +36,8 @@ class ResourceTableSeeder extends Seeder
         $curso = ["Sistemas de Informação", "Sistemas de Informação","Sistemas de Informação","Sistemas de Informação", "Sistemas de Informação", "Sistemas de Informação"];
         $instituicao = ["USJT", "USJT","USJT","USJT", "USJT", "USJT"];
         $nivel_curso = ["Graduação", "Graduação","Graduação","Graduação", "Graduação", "Graduação"];
-        $dt_inicio_fim = ["01/02/2016-12/12/2019", "01/02/2016-12/12/2019","01/02/2016-12/12/2019","01/02/2016-12/12/2019", "01/02/2016-12/12/2019", "01/02/2016-12/12/2019"];
+        $dt_curso_inicio = ["01/02/2016-12/12/2019", "01/02/2016-12/12/2019","01/02/2016-12/12/2019","01/02/2016-12/12/2019", "01/02/2016-12/12/2019", "01/02/2016-12/12/2019"];
+        $dt_curso_conclusao = ["01/02/2016-12/12/2019", "01/02/2016-12/12/2019","01/02/2016-12/12/2019","01/02/2016-12/12/2019", "01/02/2016-12/12/2019", "01/02/2016-12/12/2019"];
         $info_complementares = ["Agilista, prestativo e carinhoso", "Agilista, prestativo e carinhoso","Agilista, amorosa e carinhosa","Agilista, prestativo e carinhoso", "Agilista, prestativo e carinhoso", "Agilista, prestativo e carinhoso"];
         $accept_project = [true, false, false, true, true, true, false, true, true, false, true, true]; 
         $formacao = ["Ensino Superior","Ensino Superior","Ensino Superior","Ensino Superior","Ensino Superior","Ensino Superior","Ensino Superior"];
@@ -72,7 +74,8 @@ class ResourceTableSeeder extends Seeder
           //EXPERIÊNCIA PROFISSIONAL
           $resource->empresa = $empresa[$i];
           $resource->segmento = $segmento[$i];
-          $resource->dt_inicio_saida = $dt_inicio_saida[$i];
+          $resource->dt_empresa_inicio = $dt_empresa_inicio[$i];
+          $resource->dt_empresa_saida = $dt_empresa_saida[$i];
           $resource->cargo = $cargo[$i];
           $resource->atividades = $atividades[$i];
 
@@ -80,7 +83,8 @@ class ResourceTableSeeder extends Seeder
           $resource->curso = $curso[$i];
           $resource->instituicao = $instituicao[$i];
           $resource->nivel_curso = $nivel_curso[$i];
-          $resource->dt_inicio_fim = $dt_inicio_fim[$i];
+          $resource->dt_curso_inicio = $dt_curso_inicio[$i];
+          $resource->dt_curso_conclusao = $dt_curso_conclusao[$i];
           $resource->info_complementares = $info_complementares[$i];
 
           
