@@ -44,7 +44,7 @@ class ResourceController extends BaseController
   //função para filtro de busca de recurso. 
   public function search(Request $request){
     $resource = Resource::where('nome','LIKE','%'.$request->search.'%')
-    ->orWhere('habilidades','LIKE','%'.$request->search.'%')->get();
+    ->orWhere('categoria','LIKE','%'.$request->search.'%')->get();
     if(!$resource){
       return response()->json("Sem usuario ou habilidade cadastrados ");
    }
