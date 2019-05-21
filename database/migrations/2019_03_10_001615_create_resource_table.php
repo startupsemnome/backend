@@ -43,14 +43,13 @@ class CreateResourceTable extends Migration
             //FORMAÇÃO
             $table->string('curso', 100);
             $table->string('instituicao', 100);
-            $table->string('nivel_curso', 100);
             $table->string('dt_curso_inicio', 100)->nullable();
             $table->string('dt_curso_conclusao', 100)->nullable();
             $table->string('info_complementares', 100);
 
             //MANTIDO
             $table->boolean('accept_project')->default(false);
-            $table->string('formacao', 100)->nullable();
+            $table->string('formacao', 100);
             $table->integer('problem_id')->nullable()->unsigned();
             $table->foreign('problem_id')->references('id')->on('problem');            
             $table->timestamps();

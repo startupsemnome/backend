@@ -28,7 +28,7 @@ class Resource extends Model implements AuthenticatableContract, AuthorizableCon
         'empresa', 'segmento', 'dt_empresa_inicio', 'dt_empresa_saida', 'cargo', 'atividades',
 
         //FORMACAO
-        'curso', 'instituicao', 'nivel_curso', 'dt_curso_inicio', 'dt_curso_conclusao', 'info_complementares'
+        'curso', 'instituicao', 'formacao', 'dt_curso_inicio', 'dt_curso_conclusao', 'info_complementares'
 
     ];
 
