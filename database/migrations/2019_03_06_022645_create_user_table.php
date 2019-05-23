@@ -19,6 +19,8 @@ class CreateUserTable extends Migration
             $table->string('email', 100);
             $table->string('password', 100);
             $table->string('type', 100);
+            $table->integer('resource_id')->nullable()->unsigned();
+            $table->foreign('resource_id')->references('id')->on('resource');
             $table->timestamps();
         });
     }

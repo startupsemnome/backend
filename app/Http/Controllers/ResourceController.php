@@ -7,6 +7,7 @@ use PHPMailer\PHPMailer\Exception;
 
 use App\Resource;
 use App\Company;
+use App\User;
 use App\CategoryResource;
 use Illuminate\Http\Request;
 use Laravel\Lumen\Routing\Controller as BaseController;
@@ -21,6 +22,13 @@ class ResourceController extends BaseController
   public function create(Request $request)
     {
       $resource= Resource::create($request->all());
+      $user = new User;
+      $user->type = "RESOURCE";
+      $user->email = $request->email;
+      $user->password = $request->senha;
+      $user->name = $request->nome;
+      $user->save();
+            
       if($request->category){
         $cr = new CategoryResource;
         $cr->category_id = $request->category['category_id'];
