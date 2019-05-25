@@ -7,6 +7,8 @@ use PHPMailer\PHPMailer\Exception;
 
 use App\Resource;
 use App\Company;
+use App\User;
+use App\CategoryResource;
 use Illuminate\Http\Request;
 use Laravel\Lumen\Routing\Controller as BaseController;
 
@@ -20,6 +22,19 @@ class ResourceController extends BaseController
   public function create(Request $request)
     {
       $resource= Resource::create($request->all());
+      $user = new User;
+      $user->type = "RESOURCE";
+      $user->email = $request->email;
+      $user->password = $request->senha;
+      $user->name = $request->nome;
+      $user->save();
+            
+      if($request->category){
+        $cr = new CategoryResource;
+        $cr->category_id = $request->category['category_id'];
+        $cr->resource_id = $request->category['resource_id'];
+        $cr->save();
+      }
       return response()->json($resource, 201);
     }
 
@@ -38,7 +53,10 @@ class ResourceController extends BaseController
   //Comentario. 
   public function showOne($id)
     {
-      return response()->json(Resource::find($id));
+      $category = CategoryResource::with('category')->where('resource_id', $id)->first();
+      $resource = Resource::find($id);
+      $resource['category'] = $category;
+      return response()->json($resource);
     }
 
   //função para filtro de busca de recurso. 
@@ -55,6 +73,13 @@ class ResourceController extends BaseController
     {
       $resource = Resource::findOrFail($id);
       $resource->update($request->all());
+      if($request->category){
+        $cr = CategoryResource::find($request->category['id']);
+        $cr->id = $request->category['id'];
+        $cr->category_id = $request->category['category_id'];
+        $cr->resource_id = $request->category['resource_id'];
+        $cr->update();
+      }
       return response()->json($resource, 200);
     }
 }
