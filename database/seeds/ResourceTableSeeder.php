@@ -25,7 +25,7 @@ class ResourceTableSeeder extends Seeder
         $categoria = ["Tecnologia", "Tecnologia", "Tecnologia", "Engenharia Eletrônica", "Arquitetura", "Arquitetura"];
 
         //EXPERIENCIA PROFISSIONAL
-        $empresa = ["Microsoft", "Microsoft","Microsoft","Dell", "AgroTec", "AgroTec"];
+        $empresa = ["Microsoft", "IBM","Microsoft","Dell", "AgroTec", "AgroTec"];
         $segmento = ["Tecnologia", "Tecnologia","Tecnologia","Tecnologia", "Agronomia", "Agronomia"];
         $dt_empresa_inicio = ["2000-09-02", "2000-09-02","2000-09-02","2000-09-02", "2000-09-02", "2000-09-02"];
         $dt_empresa_saida = ["2019-09-12", "2019-09-12","2019-09-12","2019-09-12", "2019-09-12", "2019-09-12"];
