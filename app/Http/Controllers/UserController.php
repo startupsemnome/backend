@@ -6,6 +6,8 @@ use App\User;
 use App\Resource;
 use App\Company;
 use App\Problem;
+use App\CategoryProblem;
+use App\CategoryResource;
 
 use Illuminate\Http\Request;
 use Laravel\Lumen\Routing\Controller as BaseController;
@@ -140,6 +142,22 @@ class UserController extends BaseController
 
   public function match($id, Request $request){
 
+    //filtrar categorias 
+    $cp_id = CategoryProblem::where('problem_id', $id)->pluck("id")->toArray();
+    $rs_id = CategoryResource::whereIn('category_id', $cp_id)->pluck("resource_id")->toArray();
+    
+    //filtrar disponibilidade
+
+
+    //filtrar formacao
+
+
+    // filtrar habilidades
+
+    //carregar recurso com user
+    $recurso = Resource::whereIn("id", $rs_id)->get();
+    
+    return response()->json($recurso);
   }
 
 
