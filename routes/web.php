@@ -33,6 +33,7 @@ $router->post('consult-user',  ['uses' => 'UserController@search']);
 // company
 $router->get('company',  ['uses' => 'CompanyController@showAll']);
 $router->get('company/{id}',  ['uses' => 'CompanyController@showOne']);
+$router->get('view-company/{id}',  ['uses' => 'CompanyController@show']);
 $router->post('company',  ['uses' => 'CompanyController@create']);
 $router->put('company/{id}',  ['uses' => 'CompanyController@update']);
 $router->delete('company/{id}',  ['uses' => 'CompanyController@delete']);
