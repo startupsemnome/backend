@@ -20,16 +20,22 @@ class ResourceController extends BaseController
     }
   
   public function create(Request $request)
-    {
-      $resource= Resource::create($request->all());
+  {
+      $resource = new Resource;
+      $resource->nome = $request->nome;
+      $resource->sobrenome = $request->sobrenome;
+      $resource->email = $request->email;
+      $resource->senha = $request->senha;
+      $resource->save();
+
       $user = new User;
       $user->type = "RESOURCE";
       $user->email = $request->email;
       $user->password = $request->senha;
       $user->name = $request->nome;
       $user->save();
-            
-      if($request->category){
+  
+      if($request->exists('category')){
         $cr = new CategoryResource;
         $cr->category_id = $request->category['category_id'];
         $cr->resource_id = $request->category['resource_id'];

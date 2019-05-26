@@ -17,6 +17,7 @@ class UserController extends BaseController
         return response()->json(User::all());
     }
   
+  
   public function create(Request $request)
     {
       $user = User::create($request->all());
