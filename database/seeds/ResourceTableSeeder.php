@@ -1,6 +1,7 @@
 <?php
 use Illuminate\Database\Seeder;
 use App\Resource;
+use App\User;
 
 class ResourceTableSeeder extends Seeder
 {
@@ -84,7 +85,6 @@ class ResourceTableSeeder extends Seeder
           $resource->dt_curso_inicio = $dt_curso_inicio[$i];
           $resource->dt_curso_conclusao = $dt_curso_conclusao[$i];
           $resource->info_complementares = $info_complementares[$i];
-
           
           // $resource->habilidades = $habilidades[$i];
           // $resource->area_interesse = $area_interesse[$i];
@@ -99,6 +99,13 @@ class ResourceTableSeeder extends Seeder
           $resource->message1 = $message1[$i];
           $resource->problem_id = 1;          
           $resource->save();
+
+          $user = new User;
+          $user->name = $nome[$i]." ".$sobrenome[$i];
+          $user->email = $email[$i];
+          $user->password = $senha[$i];
+          $user->type = "RESOURCE";
+          $user->save();
         }  
     }
     

@@ -27,6 +27,9 @@ class AlterTableUser extends Migration
      */
     public function down()
     {
-
+        Schema::table('user', function (Blueprint $table) {
+            $table->dropForeign(['resource_id']);
+            $table->dropColumn('resource_id');            
+        });
     }
 }
