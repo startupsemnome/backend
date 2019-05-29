@@ -15,45 +15,45 @@ class CreateResourceTable extends Migration
     {
         Schema::create('resource', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nome', 50)->nullable();
-            $table->string('sobrenome', 50)->nullable();
-            $table->string('email', 50)->nullable();
-            $table->string('senha', 50)->nullable();
+            $table->string('nome', 50);
+            $table->string('sobrenome', 50);
+            $table->string('email', 50);
+            $table->string('senha', 50);
 
             //DADOS PESSOAIS
             $table->string('fotoperfil', 50)->nullable();
             $table->string('dt_nascimento', 50)->nullable();
-            $table->string('genero', 50);
+            $table->string('genero', 50)->nullable();
             $table->string('estado_civil', 50);
             $table->string('nacionalidade', 50)->nullable();
-            $table->string('uf', 50);
-            $table->string('cidade', 50);
-            $table->string('disponibilidade', 50);
-            $table->string('resumo_profissional', 500);
-            $table->string('categoria', 500);
+            $table->string('uf', 50)->nullable();
+            $table->string('cidade', 50)->nullable();
+            $table->string('disponibilidade', 50)->nullable();
+            $table->string('resumo_profissional', 500)->nullable();
+            $table->string('categoria', 500)->nullable();
 
             //EXPERIENCIA PROFISSIONAL
-            $table->string('empresa', 100);
-            $table->string('segmento', 100);
+            $table->string('empresa', 100)->nullable();
+            $table->string('segmento', 100)->nullable();
             $table->string('dt_empresa_inicio', 50)->nullable();
             $table->string('dt_empresa_saida', 50)->nullable();
-            $table->string('cargo', 100);
-            $table->string('atividades', 100);
+            $table->string('cargo', 100)->nullable();
+            $table->string('atividades', 100)->nullable();
 
             //FORMAÇÃO
-            $table->string('curso', 100);
-            $table->string('instituicao', 100);
+            $table->string('curso', 100)->nullable();
+            $table->string('instituicao', 100)->nullable();
             $table->string('dt_curso_inicio', 100)->nullable();
             $table->string('dt_curso_conclusao', 100)->nullable();
-            $table->string('info_complementares', 100);
+            $table->string('info_complementares', 100)->nullable();
 
             //MANTIDO
             $table->boolean('accept_project')->default(false);
-            $table->string('formacao', 100);
+            $table->string('formacao', 100)->nullable();
             $table->integer('problem_id')->nullable()->unsigned();
             $table->foreign('problem_id')->references('id')->on('problem');            
             $table->timestamps();
-            $table->string('message1', 100);
+            $table->string('message1', 100)->nullable();
 
             //ANTERIOR
             // $table->string('habilidades', 100);

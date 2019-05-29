@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Problem;
 use App\Company;
 use App\ResourceProblem;
+use App\CategoryProblem;
 
 use Illuminate\Http\Request;
 use Laravel\Lumen\Routing\Controller as BaseController;
@@ -19,6 +20,12 @@ class ProblemController extends BaseController
   public function create(Request $request)
   {
     $problem = Problem::create($request->all());
+    if($request->category){
+      $cp = new CategoryProblem;
+      $cp->category_id = $request->category['category_id'];
+      $cp->problem_id = $request->category['problem_id'];
+      $cp->save();
+    }
     return response()->json($problem, 201);
   }
 
@@ -33,25 +40,34 @@ class ProblemController extends BaseController
     $problem->delete();
     return response()->json("Deletado com Sucesso");
   }
-  // Busca de problema por filtro (Empresa, Solicitante)
+  // Busca de problema por filtro (Empresa, Titulo)
   public function search(Request $request){
     $problem = Problem::where('empresa','LIKE','%'.$request->search.'%')
-    ->orWhere('solicitante','LIKE','%'.$request->search.'%')->get();
+    ->orWhere('titulo','LIKE','%'.$request->search.'%')->get();
     if(!$problem){
-      return response()->json("Sem empresa ou solicitante cadastrados ");
+      return response()->json("Sem empresa ou titulo cadastrados ");
    }
    return response()->json($problem);
   }
 
   public function showOne($id)
   {
-    return response()->json(Problem::with(["company","categoryProblem"])->find($id));
+    $category = CategoryProblem::with('category')->where('problem_id', $id)->first();
+    $resource = Problem::with(["company"])->find($id);
+    $resource['category'] = $category;
+    return response()->json($resource);
   }
   
   public function update($id, Request $request)
   {
     $problem = Problem::findOrFail($id);
     $problem->update($request->all());
+    if($request->category){
+      $cp = CategoryProblem::find($request->category['id']);
+      $cp->category_id = $request->category['category_id'];
+      $cp->problem_id = $request->category['problem_id'];
+      $cp->update();
+    }
     return response()->json($problem, 200);
   }
 
