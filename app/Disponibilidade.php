@@ -29,4 +29,15 @@ class Disponibilidade extends Model implements AuthenticatableContract, Authoriz
      *
      * @var array
      */
+
+
+    public function resource()
+    {
+        return $this->belongsTo(Resource::class, 'resource_id');
+    }
+
+    public function problem()
+    {
+        return $this->belongsTo(Problem::class, 'problem_id');
+    }
 }
