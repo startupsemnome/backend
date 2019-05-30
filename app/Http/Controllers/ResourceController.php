@@ -9,6 +9,7 @@ use App\Resource;
 use App\Company;
 use App\User;
 use App\CategoryResource;
+use App\Disponibilidade;
 use Illuminate\Http\Request;
 use Laravel\Lumen\Routing\Controller as BaseController;
 
@@ -330,6 +331,8 @@ class ResourceController extends BaseController
     {
       $category = CategoryResource::with('category')->where('resource_id', $id)->first();
       $resource = Resource::find($id);
+      $disponibilidade = Disponibilidade::where('resource_id', $id)->first();
+      $resource['disponibilidade'] =  $disponibilidade;
       $resource['category'] = $category;
       return response()->json($resource);
     }
