@@ -15,13 +15,21 @@ class CreateProblemTable extends Migration
     {
         Schema::create('problem', function (Blueprint $table) {
             $table->increments('id')->unique();
-            $table->integer('empresa_id')->unsigned();
+            $table->integer('empresa_id')->unsigned()->nullable();
             $table->foreign('empresa_id')->references('id')->on('company');
+<<<<<<< HEAD
             $table->string('solicitante', 100)->nullable();
             $table->string('email', 100);
             $table->string('telefone', 100);
             $table->string('titulo', 100);
             $table->string('descricao', 500);
+=======
+            $table->string('empresa', 100)->nullable();
+            $table->string('titulo', 100);
+            $table->string('categoria', 100);
+            $table->string('descricao', 500);
+            $table->string('disponibilidade', 100)->nullable();
+>>>>>>> develop
             $table->timestamps();
             $table->softDeletes();
         });

@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 use App\Resource;
+<<<<<<< HEAD
+=======
+use App\ResourceProblem;
+>>>>>>> develop
 
 use Illuminate\Http\Request;
 
@@ -15,6 +19,16 @@ class MailController extends Controller
     
     for ($i=0; $i < sizeof($id_recursos); $i++) { 
       $resouce = Resource::find($id_recursos[$i]);
+<<<<<<< HEAD
+=======
+      
+      $rp = new ResourceProblem;
+      $rp->status = "CHAMADO"; 
+      $rp->problem_id = $request->id_problem;
+      $rp->resource_id = $id_recursos[$i]; 
+      $rp->save();
+
+>>>>>>> develop
       $mail = new PHPMailer;
       // $mail->SMTPDebug = 2;
       $mail->IsSMTP();

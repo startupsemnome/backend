@@ -18,7 +18,7 @@ class Company extends Model implements AuthenticatableContract, AuthorizableCont
      * @var array
      */
     protected $fillable = [
-        'empresa','cnpj','email','message','tele','est','cid','bair','num','rua'
+        'razaoSocial','nomeFantasia','cnpj','cep','rua','numero','bairro','cidade','uf','pais','nomeRepresentante','telefoneRepresentante','celularRepresentante','emailRepresentante','departamento','segmentoEmpresa' 
     ];
 
     public $table = "company";

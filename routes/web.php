@@ -63,6 +63,23 @@ $router->get('count-resource', ['uses' => 'ResourceController@getCountResource']
 // email
 $router->post('send-email',  ['uses' => 'MailController@send']);
 $router->post('communicate-resource',  ['uses' => 'MailController@communicateResources']);
+<<<<<<< HEAD
+
+// resource problem
+$router->post('resource-problem',  ['uses' => 'ResourceProblemController@create']);
+$router->put('resource-problem',  ['uses' => 'ResourceProblemController@update']);
+$router->get('resource-problem/resource/{id}',  ['uses' => 'ResourceProblemController@showOneResouce']);
+$router->get('resource-problem/problem/{id}',  ['uses' => 'ResourceProblemController@showOneProblem']);
+
+// category
+$router->post('category',  ['uses' => 'CategoryController@create']);
+$router->put('category/{id}',  ['uses' => 'CategoryController@update']);
+$router->get('category/{id}',  ['uses' => 'CategoryController@showOneCategory']);
+$router->get('category',  ['uses' => 'CategoryController@show']);
+
+// resource
+$router->get('/resource-aceept/{id}', ['uses' => 'ProblemController@resourceAccept']);
+=======
 
 // resource problem
 $router->post('resource-problem',  ['uses' => 'ResourceProblemController@create']);
@@ -79,3 +96,9 @@ $router->get('category',  ['uses' => 'CategoryController@show']);
 // resource
 $router->get('/resource-aceept/{id}', ['uses' => 'ProblemController@resourceAccept']);
 
+//cadastro-retrospect
+$router->get('/cadastro-retrospect', ['uses' => 'UserController@retrospect']);
+>>>>>>> develop
+
+//match
+$router->get('/match-resource-problem/{id}', ['uses' => 'UserController@match']);
