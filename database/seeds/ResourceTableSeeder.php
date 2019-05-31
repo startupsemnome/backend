@@ -1,6 +1,7 @@
 <?php
 use Illuminate\Database\Seeder;
 use App\Resource;
+use App\User;
 
 class ResourceTableSeeder extends Seeder
 {
@@ -25,19 +26,18 @@ class ResourceTableSeeder extends Seeder
         $categoria = ["Tecnologia", "Tecnologia", "Tecnologia", "Engenharia Eletrônica", "Arquitetura", "Arquitetura"];
 
         //EXPERIENCIA PROFISSIONAL
-        $empresa = ["Microsoft", "Microsoft","Microsoft","Dell", "AgroTec", "AgroTec"];
+        $empresa = ["Microsoft", "IBM","Microsoft","Dell", "AgroTec", "AgroTec"];
         $segmento = ["Tecnologia", "Tecnologia","Tecnologia","Tecnologia", "Agronomia", "Agronomia"];
-        $dt_empresa_inicio = ["19/01/1998-19/08/2000", "19/01/1998-19/08/2000","19/01/1998-19/08/2000","09/08/2000-08/09/2018", "09/08/2000-08/09/2018", "09/08/2000-08/09/2018"];
-        $dt_empresa_saida = ["19/01/1998-19/08/2000", "19/01/1998-19/08/2000","19/01/1998-19/08/2000","09/08/2000-08/09/2018", "09/08/2000-08/09/2018", "09/08/2000-08/09/2018"];
+        $dt_empresa_inicio = ["2000-09-02", "2000-09-02","2000-09-02","2000-09-02", "2000-09-02", "2000-09-02"];
+        $dt_empresa_saida = ["2019-09-12", "2019-09-12","2019-09-12","2019-09-12", "2019-09-12", "2019-09-12"];
         $cargo = ["Full Stack", "Analista de Projetos","PMO","Especialista de Desenvolvimento", "Especialista de Desenvolvimento", "Especialista de Negócios"];
         $atividades = ["Desenvolver", "Analistar","Gerenciar","Gerenciar", "Gerenciar", "Gerenciar"];
 
         //FORMAÇÃO
         $curso = ["Sistemas de Informação", "Sistemas de Informação","Sistemas de Informação","Sistemas de Informação", "Sistemas de Informação", "Sistemas de Informação"];
         $instituicao = ["USJT", "USJT","USJT","USJT", "USJT", "USJT"];
-        $nivel_curso = ["Graduação", "Graduação","Graduação","Graduação", "Graduação", "Graduação"];
-        $dt_curso_inicio = ["01/02/2016-12/12/2019", "01/02/2016-12/12/2019","01/02/2016-12/12/2019","01/02/2016-12/12/2019", "01/02/2016-12/12/2019", "01/02/2016-12/12/2019"];
-        $dt_curso_conclusao = ["01/02/2016-12/12/2019", "01/02/2016-12/12/2019","01/02/2016-12/12/2019","01/02/2016-12/12/2019", "01/02/2016-12/12/2019", "01/02/2016-12/12/2019"];
+        $dt_curso_inicio = ["2016-02-02", "2016-02-02","2016-02-02","2016-02-02", "2016-02-02", "2016-02-02"];
+        $dt_curso_conclusao = ["2019-12-12", "2019-12-12","2019-12-12","2019-12-12", "2019-12-12", "2019-12-12"];
         $info_complementares = ["Agilista, prestativo e carinhoso", "Agilista, prestativo e carinhoso","Agilista, amorosa e carinhosa","Agilista, prestativo e carinhoso", "Agilista, prestativo e carinhoso", "Agilista, prestativo e carinhoso"];
         $accept_project = [true, false, false, true, true, true, false, true, true, false, true, true]; 
         $formacao = ["Ensino Superior","Ensino Superior","Ensino Superior","Ensino Superior","Ensino Superior","Ensino Superior","Ensino Superior"];
@@ -82,11 +82,9 @@ class ResourceTableSeeder extends Seeder
           //FORMAÇÃO
           $resource->curso = $curso[$i];
           $resource->instituicao = $instituicao[$i];
-          $resource->nivel_curso = $nivel_curso[$i];
           $resource->dt_curso_inicio = $dt_curso_inicio[$i];
           $resource->dt_curso_conclusao = $dt_curso_conclusao[$i];
           $resource->info_complementares = $info_complementares[$i];
-
           
           // $resource->habilidades = $habilidades[$i];
           // $resource->area_interesse = $area_interesse[$i];
@@ -101,6 +99,13 @@ class ResourceTableSeeder extends Seeder
           $resource->message1 = $message1[$i];
           $resource->problem_id = 1;          
           $resource->save();
+
+          $user = new User;
+          $user->name = $nome[$i]." ".$sobrenome[$i];
+          $user->email = $email[$i];
+          $user->password = $senha[$i];
+          $user->type = "RESOURCE";
+          $user->save();
         }  
     }
     
