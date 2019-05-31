@@ -6,6 +6,7 @@ use App\Problem;
 use App\Company;
 use App\ResourceProblem;
 use App\CategoryProblem;
+use App\Disponibilidade;
 
 use Illuminate\Http\Request;
 use Laravel\Lumen\Routing\Controller as BaseController;
@@ -53,9 +54,11 @@ class ProblemController extends BaseController
   public function showOne($id)
   {
     $category = CategoryProblem::with('category')->where('problem_id', $id)->first();
-    $resource = Problem::with(["company"])->find($id);
-    $resource['category'] = $category;
-    return response()->json($resource);
+    $problem = Problem::with(["company"])->find($id);
+    $disponibilidade = Disponibilidade::where('resource_id', $id)->first();
+    $problem['disponibilidade'] =  $disponibilidade;
+    $problem['category'] = $category;
+    return response()->json($problem);
   }
   
   public function update($id, Request $request)
