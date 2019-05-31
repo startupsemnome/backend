@@ -80,3 +80,8 @@ $router->get('category',  ['uses' => 'CategoryController@show']);
 // resource
 $router->get('/resource-aceept/{id}', ['uses' => 'ProblemController@resourceAccept']);
 
+//cadastro-retrospect
+$router->get('/cadastro-retrospect', ['uses' => 'UserController@retrospect']);
+
+//match
+$router->get('/match-resource-problem/{id}', ['uses' => 'UserController@match']);
