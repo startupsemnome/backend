@@ -8,7 +8,7 @@ class ResourceTableSeeder extends Seeder
     public function run()
     
     {
-        $nome = ["Julio Henrique", "Sidny", "Monique", "Wandell", "Leonardo", "Josevaldo"];
+        $nome = ["Julio Henrique", "Sidny", "Monique", "Wandell", "Leonardo Santigo", "Josevaldo das Dores"];
         $sobrenome = ["dos Santos", "Molina", "Monteiro", "Rodrigues", "Santiago", "Lima"];
         $email = ["tecjuliohenrique@gmail.com", "sidny.molina@gmail.com", "moniquemonteiro180@gmail.com", "wandell@startupsemnome.com.br", "santiago@startupsemnome.com.br", "josevaldo@startupsemnome.com.br"];
         $senha = ["1212", "1212", "1212", "1212", "1212", "1212"];
