@@ -36,6 +36,17 @@ class ResourceController extends BaseController
       $user->name = $request->nome;
       $user->save();
 
+      $disponibilidade = new Disponibilidade;
+      $disponibilidade->segunda = "000";
+      $disponibilidade->terca = "000";
+      $disponibilidade->quarta = "000";
+      $disponibilidade->quinta = "000";
+      $disponibilidade->sexta = "000";
+      $disponibilidade->sabado = "000";
+      $disponibilidade->domingo = "000"; 
+      $disponibilidade->resource_id = $resource->id; 
+      $disponibilidade->save();
+
       $mail = new PHPMailer;
       // $mail->SMTPDebug = 2;
       $mail->IsSMTP();
@@ -350,14 +361,94 @@ class ResourceController extends BaseController
   public function update($id, Request $request)
     {
       $resource = Resource::findOrFail($id);
-      $resource->update($request->all());
-      if($request->category){
-        $cr = CategoryResource::find($request->category['id']);
-        $cr->id = $request->category['id'];
-        $cr->category_id = $request->category['category_id'];
-        $cr->resource_id = $request->category['resource_id'];
-        $cr->update();
+      $resource->nome = $request->nome;
+      $resource->sobrenome = $request->sobrenome;
+      $resource->email = $request->email;
+      $resource->senha = $request->senha;
+
+      //DADOS PESSOAIS
+      $resource->fotoperfil = $request->fotoperfil;
+      $resource->dt_nascimento = $request->dt_nascimento;
+      $resource->genero = $request->genero;
+      $resource->estado_civil = $request->estado_civil;
+      $resource->nacionalidade = $request->nacionalidade;
+      $resource->uf = $request->uf;
+      $resource->cidade = $request->cidade;
+      // $resource->disponibilidade = $request-> ;
+      $resource->resumo_profissional = $request->resumo_profissional;
+      // $resource->categoria = $request->;
+
+      //EXPERIENCIA PROFISSIONAL
+      $resource->empresa = $request->empresa;
+      $resource->segmento = $request->segmento;
+      $resource->dt_empresa_inicio = $request->dt_empresa_inicio;
+      $resource->dt_empresa_saida = $request->dt_empresa_saida;
+      $resource->cargo = $request->cargo;
+      $resource->atividades = $request->atividades;
+
+      //FORMAÇÃO
+      $resource->curso = $request->curso;
+      $resource->instituicao = $request->instituicao;
+      $resource->dt_curso_inicio = $request->dt_curso_inicio;
+      $resource->dt_curso_conclusao = $request->dt_curso_conclusao;
+      $resource->info_complementares = $request->info_complementares;      
+      $resource->formacao = $request->formacao;
+
+      // $curso = $request-> ;
+      // $telefone = $request-> ;
+      // $endereco = $request-> ;
+      // $celular = $request-> ;
+      // $cidade = $request-> ;
+      // $habilidades = $request-> ;
+      // $area_interesse = $request-> ;
+
+      $resource->message1 = $request->message1;
+    
+      $resource->update();
+      
+      
+      if($request->category_id){
+        
+        $cr = CategoryResource::where('resource_id', $id)->first();  
+        $vazio = !$cr;              
+        if($vazio){
+          $cr = new CategoryResource;          
+        }
+        $cr->category_id = $request->category_id;
+        $cr->resource_id = $id;
+        
+        if($vazio){         
+          $cr->save();
+        } else{
+          $cr->update();
+        }
+        $resource['categoria'] = $cr;
       }
+
+      if($request->disponibilidade){
+        
+        $d = Disponibilidade::where('resource_id', $id)->first();  
+        $vazio = !$d;              
+        if($vazio){
+          $d = new Disponibilidade;          
+        }
+        
+        $d->segunda = $request->disponibilidade['segunda'];
+        $d->terca = $request->disponibilidade['terca'];
+        $d->quarta = $request->disponibilidade['quarta'];
+        $d->quinta = $request->disponibilidade['quinta'];
+        $d->sexta = $request->disponibilidade['sexta'];
+        $d->sabado = $request->disponibilidade['sabado'];
+        $d->domingo = $request->disponibilidade['domingo'];
+        
+        if($vazio){         
+          $d->save();
+        } else{
+          $d->update();
+        }
+        $resource['disponibilidade'] = $d;
+      }
+
       return response()->json($resource, 200);
     }
 }
