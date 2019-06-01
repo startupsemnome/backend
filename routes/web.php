@@ -33,6 +33,7 @@ $router->post('consult-user',  ['uses' => 'UserController@search']);
 // company
 $router->get('company',  ['uses' => 'CompanyController@showAll']);
 $router->get('company/{id}',  ['uses' => 'CompanyController@showOne']);
+$router->get('view-company/{id}',  ['uses' => 'CompanyController@show']);
 $router->post('company',  ['uses' => 'CompanyController@create']);
 $router->put('company/{id}',  ['uses' => 'CompanyController@update']);
 $router->delete('company/{id}',  ['uses' => 'CompanyController@delete']);
@@ -79,3 +80,8 @@ $router->get('category',  ['uses' => 'CategoryController@show']);
 // resource
 $router->get('/resource-aceept/{id}', ['uses' => 'ProblemController@resourceAccept']);
 
+//cadastro-retrospect
+$router->get('/cadastro-retrospect', ['uses' => 'UserController@retrospect']);
+
+//match
+$router->get('/match-resource-problem/{id}', ['uses' => 'UserController@match']);

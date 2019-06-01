@@ -19,6 +19,6 @@ class DatabaseSeeder extends Seeder
         $this->call('ResourceProblemTableSeeder');    
         $this->call('CategoryResourceSeeder');
         $this->call('CategoryProblemSeeder');
-
+        $this->call('DisponibilidadeTableSeeder');
     }
 }
