@@ -33,7 +33,7 @@ class CompanyController extends BaseController
     }
 //Pesquisar companys relacionadas com que foi digitado no input
     public function search(Request $request){
-      $company = Company::where('razaoSocial','LIKE','%'.$request->search.'%')
+      $company = Company::with("problem")->where('razaoSocial','LIKE','%'.$request->search.'%')
       ->orWhere('emailRepresentante','LIKE','%'.$request->search.'%')->get();
       if(!$company){
         return response()->json("Sem empresa ou email cadastrados ");
