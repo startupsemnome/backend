@@ -100,7 +100,7 @@ class MailController extends Controller
                     <tr>
                       <td align='center'>
                         <div style='line-height: 24px;'>
-                          <a href='http://localhost:3000/' target='_blank' class='button button'
+                          <a href='http://localhost:3000/login' target='_blank' class='button button'
                             style='color: #fff; background-color: rgba(20, 20, 20, 0.8); text-align: center;
                           font-size: 20px; width: 28%; margin: 0px;  padding: 10px 30px; display:flex; justify-content:center;'>Visualizar projeto</a>
                         </div>

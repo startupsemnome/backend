@@ -98,7 +98,7 @@ class ResourceController extends BaseController
                         <td align='center'>
                           <br><br>
                           <div style='height: 60px; line-height: 60px; font-size: 10px;'> 
-                            <img src='.\src\components\html\azul.jpeg' alt='Smiley face' height='80' width='80'>
+                            <img src='https://i.ibb.co/cJL1ZjG/azul.jpg' alt='Smiley face' height='80' width='80'>
     
                           </div>
                           <br><br>
@@ -117,24 +117,23 @@ class ResourceController extends BaseController
                           <div style='line-height: 24px;'>
                             <font face='Arial, Helvetica, sans-serif' size='4' color='#57697e' style='font-size: 15px;'>
                               <span style='font-family: Arial, Helvetica, sans-serif; font-size: 15px; color: #57697e;'>
-                                Temos as soluções perfeitas para o seu negócio. <br>
-                                Agora, precisamos que confirme seu e-mail de cadastro clicando no botão abaixo!
+                                Encontramos um projeto com a sua cara. <br>
+                                Para isso, precisamos que você atualize seu cadastro!
                               </span></font>
                           </div>
-                        
+
                           <div style='height: 40px; line-height: 40px; font-size: 10px;'> </div>
                         </td>
                       </tr>
                       <tr>
                         <td align='center'>
                           <div style='line-height: 24px;'>
-                            <button onclick='confirmed()' class='button button1'>Confirmar</button>
-                            <script>
-                              function confirmed() {
-                                alert('Seu e-mail foi confirmado com sucesso!');
-                              }
-                            </script>
+                          <a href='http://localhost:3000/login' target='_blank' class='button button'
+                          style='color: #fff; background-color: rgba(20, 20, 20, 0.8); text-align: center;
+                        font-size: 20px; width: 28%; margin: 0px;  padding: 10px 30px; display:flex; justify-content:center;'>Atualizar Cadastro</a>
                           </div>
+                          <br />
+                          <br />                          
                         </td>
                       </tr>
                     </table>
