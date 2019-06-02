@@ -33,6 +33,7 @@ class ResourceController extends BaseController
       $user->type = "RESOURCE";
       $user->email = $request->email;
       $user->password = $request->senha;
+      $user->resource_id = $resource->id;
       $user->name = $request->nome;
       $user->save();
 

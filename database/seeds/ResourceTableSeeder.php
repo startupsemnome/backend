@@ -103,6 +103,7 @@ class ResourceTableSeeder extends Seeder
           $user = new User;
           $user->name = $nome[$i]." ".$sobrenome[$i];
           $user->email = $email[$i];
+          $user->resource_id = $resource->id;
           $user->password = $senha[$i];
           $user->type = "RESOURCE";
           $user->save();

@@ -47,6 +47,11 @@ class UserController extends BaseController
     if(!$user){
       return abort(401, "Usuario ou Senha inválida");
     } 
+
+    if($user->type === "RESOURCE"){
+      $user->id = Resource::where('id', $user->resource_id)->pluck('id')->first();       
+    }
+
     return response()->json($user);
   }
 
