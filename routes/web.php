@@ -50,7 +50,7 @@ $router->put('problem/{id}',  ['uses' => 'ProblemController@update']);
 $router->delete('problem/{id}',  ['uses' => 'ProblemController@delete']);
 $router->post('consult-problem',  ['uses' => 'ProblemController@search']);
 $router->get('count-problem', ['uses' => 'ProblemController@getCountProblem']);
-
+$router->get('problem-category', ['uses' => 'ProblemController@loadCategories']);
 
 // resource
 $router->get('resource',  ['uses' => 'ResourceController@showAll']);
@@ -59,6 +59,7 @@ $router->post('resource',  ['uses' => 'ResourceController@create']);
 $router->put('resource/{id}',  ['uses' => 'ResourceController@update']);
 $router->delete('resource/{id}',  ['uses' => 'ResourceController@delete']);
 $router->post('consult-resource',  ['uses' => 'ResourceController@search']);
+$router->get('resource-category',  ['uses' => 'ResourceController@loadCategories']);
 $router->get('count-resource', ['uses' => 'ResourceController@getCountResource']);
 
 // email

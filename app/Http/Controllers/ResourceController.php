@@ -20,6 +20,11 @@ class ResourceController extends BaseController
         return response()->json(Resource::all());
     }
   
+  public function loadCategories()
+  {
+    return response()->json(CategoryResource::with('category')->get());
+  }
+  
   public function create(Request $request)
   {
       $resource = new Resource;

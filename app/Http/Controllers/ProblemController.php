@@ -30,6 +30,11 @@ class ProblemController extends BaseController
     return response()->json($problem, 201);
   }
 
+  public function loadCategories()
+  {
+    return response()->json(CategoryProblem::with('category')->get());
+  }
+
   public function getCountProblem(){
     $problems = Problem::get()->count();
     return response()->json($problems, 200);
