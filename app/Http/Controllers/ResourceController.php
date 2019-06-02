@@ -1,20 +1,14 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
-
 use App\Resource;
 use App\Company;
-<<<<<<< HEAD
-=======
 use App\User;
 use App\CategoryResource;
->>>>>>> develop
+use App\Disponibilidade;
 use Illuminate\Http\Request;
 use Laravel\Lumen\Routing\Controller as BaseController;
-
 class ResourceController extends BaseController
 {
   public function showAll()
@@ -30,14 +24,12 @@ class ResourceController extends BaseController
       $resource->email = $request->email;
       $resource->senha = $request->senha;
       $resource->save();
-
       $user = new User;
       $user->type = "RESOURCE";
       $user->email = $request->email;
       $user->password = $request->senha;
       $user->name = $request->nome;
       $user->save();
-
       $mail = new PHPMailer;
       // $mail->SMTPDebug = 2;
       $mail->IsSMTP();
@@ -65,7 +57,7 @@ class ResourceController extends BaseController
                 <tr>
                   <td>
                     
-                    <div style='height: 40px; line-height: 50px; font-size: 10px;'> </div>
+                    <div style='height: 40px; line-height: 50px; font-size: 10px;'> </div>
                   </td>
                 </tr>
               
@@ -75,7 +67,7 @@ class ResourceController extends BaseController
                     </table>
     
               
-                    <div style='height: 20px; background-color: #29aac7; font-size: 10px;'> </div>
+                    <div style='height: 20px; background-color: #29aac7; font-size: 10px;'> </div>
                   </td>
                 </tr>
               
@@ -87,7 +79,7 @@ class ResourceController extends BaseController
                       <tr>
                         <td align='center'>
                           <br><br>
-                          <div style='height: 60px; line-height: 60px; font-size: 10px;'> 
+                          <div style='height: 60px; line-height: 60px; font-size: 10px;'> 
                             <img src='.\src\components\html\azul.jpeg' alt='Smiley face' height='80' width='80'>
     
                           </div>
@@ -112,7 +104,7 @@ class ResourceController extends BaseController
                               </span></font>
                           </div>
                         
-                          <div style='height: 40px; line-height: 40px; font-size: 10px;'> </div>
+                          <div style='height: 40px; line-height: 40px; font-size: 10px;'> </div>
                         </td>
                       </tr>
                       <tr>
@@ -144,7 +136,7 @@ class ResourceController extends BaseController
                               <tr>
                                 <td align='center' style='line-height: 14px; padding: 0 27px;'>
                                   
-                                  <div style='height: 40px; line-height: 40px; font-size: 10px;'> </div>
+                                  <div style='height: 40px; line-height: 40px; font-size: 10px;'> </div>
                                   <div style='line-height: 14px;'>
                                     <font face='Arial, Helvetica, sans-serif' size='3' color='#4db3a4'
                                       style='font-size: 14px;'>
@@ -154,7 +146,7 @@ class ResourceController extends BaseController
                                       </strong></font>
                                   </div>
                                   
-                                  <div style='height: 18px; line-height: 18px; font-size: 10px;'> </div>
+                                  <div style='height: 18px; line-height: 18px; font-size: 10px;'> </div>
                                   <div style='line-height: 21px;'>
                                     <font face='Arial, Helvetica, sans-serif' size='3' color='#98a7b9'
                                       style='font-size: 14px;'>
@@ -174,7 +166,7 @@ class ResourceController extends BaseController
                               <tr>
                                 <td align='center' style='line-height: 14px; padding: 0 27px;'>
                                 
-                                  <div style='height: 40px; line-height: 40px; font-size: 10px;'> </div>
+                                  <div style='height: 40px; line-height: 40px; font-size: 10px;'> </div>
                                   <div style='line-height: 14px;'>
                                     <font face='Arial, Helvetica, sans-serif' size='3' color='#4db3a4'
                                       style='font-size: 14px;'>
@@ -184,7 +176,7 @@ class ResourceController extends BaseController
                                       </strong></font>
                                   </div>
                                   
-                                  <div style='height: 18px; line-height: 18px; font-size: 10px;'> </div>
+                                  <div style='height: 18px; line-height: 18px; font-size: 10px;'> </div>
                                   <div style='line-height: 21px;'>
                                     <font face='Arial, Helvetica, sans-serif' size='3' color='#98a7b9'
                                       style='font-size: 14px;'>
@@ -204,7 +196,7 @@ class ResourceController extends BaseController
                               <tr>
                                 <td align='center' style='line-height: 14px; padding: 0 27px;'>
                                 
-                                  <div style='height: 40px; line-height: 40px; font-size: 10px;'> </div>
+                                  <div style='height: 40px; line-height: 40px; font-size: 10px;'> </div>
                                   <div style='line-height: 14px;'>
                                     <font face='Arial, Helvetica, sans-serif' size='3' color='#4db3a4'
                                       style='font-size: 14px;'>
@@ -214,7 +206,7 @@ class ResourceController extends BaseController
                                       </strong></font>
                                   </div>
                                 
-                                  <div style='height: 18px; line-height: 18px; font-size: 10px;'> </div>
+                                  <div style='height: 18px; line-height: 18px; font-size: 10px;'> </div>
                                   <div style='line-height: 21px;'>
                                     <font face='Arial, Helvetica, sans-serif' size='3' color='#98a7b9'
                                       style='font-size: 14px;'>
@@ -233,7 +225,7 @@ class ResourceController extends BaseController
                       <tr>
                         <td>
                           
-                          <div style='height: 50px; line-height: 50px; font-size: 10px;'> </div>
+                          <div style='height: 50px; line-height: 50px; font-size: 10px;'> </div>
                         </td>
                       </tr>
                     </table>
@@ -253,7 +245,7 @@ class ResourceController extends BaseController
                       </tr>
                     </table>
     
-                    <div style='height: 20px; line-height: 20px; font-size: 10px;'> </div>
+                    <div style='height: 20px; line-height: 20px; font-size: 10px;'> </div>
                   </td>
                 </tr>
     
@@ -261,7 +253,7 @@ class ResourceController extends BaseController
                 <tr>
                   <td>
                     
-                    <div style='height: 20px; background-color: #29aac7; font-size: 10px;'> </div>
+                    <div style='height: 20px; background-color: #29aac7; font-size: 10px;'> </div>
                   </td>
                 </tr>
               </table>
@@ -315,7 +307,6 @@ class ResourceController extends BaseController
       }
       return response()->json($resource, 201);
     }
-
     public function getCountResource(){
       $resources = Resource::get()->count();
       return response()->json($resources, 200);
@@ -327,20 +318,20 @@ class ResourceController extends BaseController
       $resource->delete();
       return response()->json("Deletado com Sucesso!");
   }
-
   //Comentario. 
   public function showOne($id)
     {
       $category = CategoryResource::with('category')->where('resource_id', $id)->first();
       $resource = Resource::find($id);
+      $disponibilidade = Disponibilidade::where('resource_id', $id)->first();
+      $resource['disponibilidade'] =  $disponibilidade;
       $resource['category'] = $category;
       return response()->json($resource);
     }
-
   //função para filtro de busca de recurso. 
   public function search(Request $request){
     $resource = Resource::where('nome','LIKE','%'.$request->search.'%')
-    ->orWhere('habilidades','LIKE','%'.$request->search.'%')->get();
+    ->orWhere('categoria','LIKE','%'.$request->search.'%')->get();
     if(!$resource){
       return response()->json("Sem usuario ou habilidade cadastrados ");
    }

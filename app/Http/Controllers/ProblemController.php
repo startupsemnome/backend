@@ -1,18 +1,12 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use App\Problem;
 use App\Company;
 use App\ResourceProblem;
-<<<<<<< HEAD
-=======
 use App\CategoryProblem;
->>>>>>> develop
-
+use App\Disponibilidade;
 use Illuminate\Http\Request;
 use Laravel\Lumen\Routing\Controller as BaseController;
-
 class ProblemController extends BaseController
 {  
   public function showAll()
@@ -31,12 +25,10 @@ class ProblemController extends BaseController
     }
     return response()->json($problem, 201);
   }
-
   public function getCountProblem(){
     $problems = Problem::get()->count();
     return response()->json($problems, 200);
   }
-
   public function delete($id)
   {
     $problem = Problem::findOrFail($id);
@@ -46,27 +38,20 @@ class ProblemController extends BaseController
   // Busca de problema por filtro (Empresa, Titulo)
   public function search(Request $request){
     $problem = Problem::where('empresa','LIKE','%'.$request->search.'%')
-<<<<<<< HEAD
-    ->orWhere('solicitante','LIKE','%'.$request->search.'%')->get();
-=======
     ->orWhere('titulo','LIKE','%'.$request->search.'%')->get();
->>>>>>> develop
     if(!$problem){
       return response()->json("Sem empresa ou titulo cadastrados ");
    }
    return response()->json($problem);
   }
-
   public function showOne($id)
   {
-<<<<<<< HEAD
-    return response()->json(Problem::with(["company","categoryProblem"])->find($id));
-=======
     $category = CategoryProblem::with('category')->where('problem_id', $id)->first();
-    $resource = Problem::with(["company"])->find($id);
-    $resource['category'] = $category;
-    return response()->json($resource);
->>>>>>> develop
+    $problem = Problem::with(["company"])->find($id);
+    $disponibilidade = Disponibilidade::where('resource_id', $id)->first();
+    $problem['disponibilidade'] =  $disponibilidade;
+    $problem['category'] = $category;
+    return response()->json($problem);
   }
   
   public function update($id, Request $request)
@@ -81,11 +66,8 @@ class ProblemController extends BaseController
     }
     return response()->json($problem, 200);
   }
-
   public function resourceAccept($id){
-
     $problems = ResourceProblem::where('problem_id', $id)->where('status', 'AGUARDANDO-CONTATO')->with('resource')->get();
     return response()->json($problems, 200);
   }
 }
-
