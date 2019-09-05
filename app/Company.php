@@ -21,7 +21,7 @@ class Company extends Model implements AuthenticatableContract, AuthorizableCont
         'razaoSocial','nomeFantasia','cnpj','cep','rua','numero','bairro','cidade','uf','pais','nomeRepresentante','telefoneRepresentante','celularRepresentante','emailRepresentante','departamento','segmentoEmpresa' 
     ];
 
-    public $table = "company";
+    public $table = "Company";
 
     /**
      * The attributes excluded from the model's JSON form.

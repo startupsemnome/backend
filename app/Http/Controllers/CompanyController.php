@@ -40,13 +40,21 @@ class CompanyController extends BaseController
      }
      return response()->json($company);
     }
-//Excluir company
-  public function delete($id)
+    
+    public function delete($id)
     {
       $company = Company::findOrFail($id);
-      $company->delete($id);
-      return response()->json("Deletado com Sucesso!");
+      $company->delete();
+      return response()->json("Deletado com Sucesso");
     }
+
+//Excluir company
+  // public function delete($id)
+  //   {
+  //     $company = Company::findOrFail($id);
+  //     $company->delete($id);
+  //     return response()->json("Deletado com Sucesso!");
+  //   }
 //Mostrar company com seus problema relacionada
   public function showOne($id)
     {
