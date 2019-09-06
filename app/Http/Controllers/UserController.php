@@ -8,6 +8,7 @@ use App\Company;
 use App\Problem;
 use App\CategoryProblem;
 use App\CategoryResource;
+use App\Disponibilidade;
 
 use Illuminate\Http\Request;
 use Laravel\Lumen\Routing\Controller as BaseController;
@@ -150,14 +151,181 @@ class UserController extends BaseController
     //filtrar categorias 
     $cp_id = CategoryProblem::where('problem_id', $id)->pluck("id")->toArray();
     $rs_id = CategoryResource::whereIn('category_id', $cp_id)->pluck("resource_id")->toArray();
-    
-    //filtrar disponibilidade
 
+    //filtrar disponibilidade
+    $disp_problem = Disponibilidade::where('problem_id', $id)->get();
+    
+    $count = 0;
+       
+    foreach ($rs_id as $r_id){
+      $d_rec = Disponibilidade::where('resource_id', $r_id)->get();
+      // echo var_dump($d_rec[0]);
+      
+      //segunda
+      if($disp_problem[0]->segunda[0] == 1 && $d_rec[0]->segunda[0] != 1) {                  
+        // echo "remove: ". $r_id;
+
+        unset($rs_id[$count]);                    
+        $count++;
+        continue;        
+      };
+      if($disp_problem[0]->segunda[1] == 1) {
+        if($d_rec[0]->segunda[1] == 0){          
+          unset($rs_id[$count]);
+          $count++;
+          continue;          
+        };
+      }
+      if($disp_problem[0]->segunda[2] == 1) {
+        if($d_rec[0]->segunda[2] == 0){          
+          unset($rs_id[$count]);
+          $count++;
+          continue;          
+        };
+      }
+      
+      //terca 
+      if($disp_problem[0]->terca[0] == 1) {
+        if($d_rec[0]->terca[0] == 0){          
+          unset($rs_id[$count]);
+          $count++;
+          continue;          
+        };
+      }
+      if($disp_problem[0]->terca[1] == 1) {
+        if($d_rec[0]->terca[1] == 0){          
+          unset($rs_id[$count]);
+          $count++;
+          continue;          
+        };
+      }
+      if($disp_problem[0]->terca[2] == 1) {
+        if($d_rec[0]->terca[2] == 0){          
+          unset($rs_id[$count]);
+          $count++;
+          continue;          
+        };
+      }
+      //quarta
+      if($disp_problem[0]->quarta[0] == 1) {
+        if($d_rec[0]->quarta[0] == 0){          
+          unset($rs_id[$count]);
+          $count++;
+          continue;          
+        };
+      }
+      if($disp_problem[0]->quarta[1] == 1) {
+        if($d_rec[0]->quarta[1] == 0){          
+          unset($rs_id[$count]);
+          $count++;
+          continue;          
+        };
+      }
+      if($disp_problem[0]->quarta[2] == 1) {
+        if($d_rec[0]->quarta[2] == 0){          
+          unset($rs_id[$count]);
+          $count++;
+          continue;          
+        };
+      }
+      //quinta
+      if($disp_problem[0]->quinta[0] == 1) {
+        if($d_rec[0]->quinta[0] == 0){          
+          unset($rs_id[$count]);
+          $count++;
+          continue;          
+        };
+      }
+      if($disp_problem[0]->quinta[1] == 1) {
+        if($d_rec[0]->quinta[1] == 0){          
+          unset($rs_id[$count]);
+          $count++;
+          continue;          
+        };
+      }
+      if($disp_problem[0]->quinta[2] == 1) {
+        if($d_rec[0]->quinta[2] == 0){          
+          unset($rs_id[$count]);
+          $count++;
+          continue;          
+        };
+      }
+      //sexta 
+      if($disp_problem[0]->sexta[0] == 1) {
+        if($d_rec[0]->sexta[0] == 0){          
+          unset($rs_id[$count]);
+          $count++;
+          continue;          
+        };
+      }
+      if($disp_problem[0]->sexta[1] == 1) {
+        if($d_rec[0]->sexta[1] == 0){          
+          unset($rs_id[$count]);
+          $count++;
+          continue;          
+        };
+      }
+      if($disp_problem[0]->sexta[2] == 1) {
+        if($d_rec[0]->sexta[2] == 0){          
+          unset($rs_id[$count]);
+          $count++;
+          continue;          
+        };
+      }
+      //sabado 
+      if($disp_problem[0]->sabado[0] == 1) {
+        if($d_rec[0]->sabado[0] == 0){          
+          unset($rs_id[$count]);
+          $count++;
+          continue;          
+        };
+      }
+      if($disp_problem[0]->sabado[1] == 1) {
+        if($d_rec[0]->sabado[1] == 0){          
+          unset($rs_id[$count]);
+          $count++;
+          continue;          
+        };
+      }
+      if($disp_problem[0]->sabado[2] == 1) {
+        if($d_rec[0]->sabado[2] == 0){          
+          unset($rs_id[$count]);
+          $count++;
+          continue;          
+        };
+      }
+      //domingo 
+      if($disp_problem[0]->domingo[0] == 1) {
+        if($d_rec[0]->domingo[0] == 0){          
+          unset($rs_id[$count]);
+          $count++;
+          continue;          
+        };
+      }
+      if($disp_problem[0]->domingo[1] == 1) {
+        if($d_rec[0]->domingo[1] == 0){          
+          unset($rs_id[$count]);
+          $count++;
+          continue;          
+        };
+      }
+      if($disp_problem[0]->domingo[2] == 1) {
+        if($d_rec[0]->domingo[2] == 0){          
+          unset($rs_id[$count]);
+          $count++;
+          continue;          
+        };
+      } 
+    }
+
+
+    
 
     //filtrar formacao
-
+    // para v2
 
     // filtrar habilidades
+    // para v2
 
     //carregar recurso com user
     $recurso = Resource::whereIn("id", $rs_id)->get();

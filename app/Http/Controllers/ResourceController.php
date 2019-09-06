@@ -413,21 +413,25 @@ class ResourceController extends BaseController
       
       
       if($request->category_id){
-        
-        $cr = CategoryResource::where('resource_id', $id)->first();  
-        $vazio = !$cr;              
-        if($vazio){
-          $cr = new CategoryResource;          
+        try {
+          $cr = CategoryResource::where('resource_id', $id)->first();  
+          $vazio = !$cr;              
+          if($vazio){
+            $cr = new CategoryResource;          
+          }
+          $cr->category_id = $request->category_id;
+          $cr->resource_id = $id;
+          
+          if($vazio){         
+            $cr->save();
+          } else{
+            $cr->update();
+          }
+          $resource['categoria'] = $cr;
+        } catch (\Throwable $th) {
+          //throw $th;
         }
-        $cr->category_id = $request->category_id;
-        $cr->resource_id = $id;
         
-        if($vazio){         
-          $cr->save();
-        } else{
-          $cr->update();
-        }
-        $resource['categoria'] = $cr;
       }
 
       if($request->disponibilidade){
