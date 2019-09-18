@@ -20,6 +20,30 @@ class UserController extends BaseController
         return response()->json(User::all());
     }
   
+    public function sentiment(Request $request)
+    {
+      $text = $request->text;
+      $aux_array = preg_split ("/\ /", $text);
+
+      $feliz = ['GOSTEI', 'ÓTIMO', 'ÓTIMA', 'EXELENTE', 'LEGAL', 'ANIMAL', "FELIZ", "SUCESSO", "COMPROMISSADO"];
+      $triste = ['PESSÍMO', 'DECEPCIONADO', 'CONFLITO', 'DESCOMPROMISSO', 'HORRÍVEL', 'CHATEADO', 'TRISTE', 'ATRASADO'];
+
+      $resposta = "Moderado";
+
+      foreach($aux_array as $key) {
+        foreach($feliz as $keyFeliz) {
+          if(strtoupper($key) === $keyFeliz)
+            $resposta = "Feliz";
+        }
+        foreach($triste as $keyTriste) {
+          if(strtoupper($key) === $keyTriste)
+            $resposta = "Triste";
+        }
+
+      }
+
+      return response()->json($resposta);
+    }
   
   public function create(Request $request)
     {
