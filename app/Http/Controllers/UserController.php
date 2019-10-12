@@ -8,6 +8,7 @@ use App\Company;
 use App\Problem;
 use App\CategoryProblem;
 use App\CategoryResource;
+use App\ResourceProblem;
 use App\Disponibilidade;
 
 use Illuminate\Http\Request;
@@ -20,8 +21,43 @@ class UserController extends BaseController
         return response()->json(User::all());
     }
 
+    public function sentimentProject(Request $request){
+      $rs = ResourceProblem::where('problem_id', $request->problem_id)->get();
+
+      $happy = 0;
+      $middle = 0;
+      $bad = 0;
+
+      foreach($rs as $key) {
+        if($key['sentiment'] == 'Feliz'){
+          $happy = $happy + 1;
+        } else if($key['sentiment'] == 'Moderado') {
+          $middle = $middle + 1;
+        } else if($key['sentiment'] == 'Triste'){
+          $bad = $bad + 1;
+        }        
+      }
+
+      if($happy == 0 && $middle == 0 && $bad == 0){
+        return response()->json("Não existe analise para esse projeto");
+      }
+      else if($happy >= $middle && $happy >= $bad){
+        return response()->json("Feliz");
+      }
+      else if($middle > $happy && $middle >= $bad){
+        return response()->json("Moderado");
+      }
+      else if($bad >= $middle && $bad >= $happy){
+        return response()->json("Triste");
+      }
+    }
+
     public function sentiment(Request $request)
     {
+
+      $rs = ResourceProblem::where('resource_id', $request->resource_id)->first();
+
+
       $text = $request->text;
       $aux_array = preg_split ("/\ /", $text);
 
@@ -41,6 +77,10 @@ class UserController extends BaseController
         }
 
       }
+
+      $rs['sentiment'] = $resposta;
+
+      $rs->save();
 
       return response()->json($resposta);
     }

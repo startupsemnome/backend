@@ -20,6 +20,7 @@ class ResourceProblemTable extends Migration
             $table->foreign('problem_id')->references('id')->on('problem');
             $table->integer('resource_id')->nullable()->unsigned();
             $table->foreign('resource_id')->references('id')->on('resource');
+            $table->string('sentiment', 10);
             $table->timestamps();
         });
     }
