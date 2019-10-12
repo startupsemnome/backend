@@ -21,6 +21,7 @@ class ResourceProblemTable extends Migration
             $table->integer('resource_id')->nullable()->unsigned();
             $table->foreign('resource_id')->references('id')->on('resource');
             $table->string('sentiment', 10);
+            $table->string('comment', 500);
             $table->timestamps();
         });
     }

@@ -13,9 +13,11 @@ class ResourceProblemTableSeeder extends Seeder
         $status = ["CHAMADO"];
 
         $sentiment = ["Moderado","Feliz","Triste"];
-
+        
         
         $aux = 0;
+        $comment = ["Projeto foi normal", "Estou muito Feliz", "Projeto Fraco"];
+
         for ($i=0; $i < 5; $i++) { 
           $resource_problem = new ResourceProblem;
           $resource_problem->id = $id[$i];
@@ -23,6 +25,7 @@ class ResourceProblemTableSeeder extends Seeder
           $resource_problem->problem_id = $id_problem[$i];
           $resource_problem->status = $status[0];
           $resource_problem->sentiment = $sentiment[$aux];
+          $resource_problem->comment = $comment[$aux];
           $resource_problem->save();
           
           if($i == 1){

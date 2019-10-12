@@ -79,6 +79,7 @@ class UserController extends BaseController
       }
 
       $rs['sentiment'] = $resposta;
+      $rs['comment'] = $request->text;
 
       $rs->save();
 
