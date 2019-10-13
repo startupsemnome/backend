@@ -8,6 +8,7 @@ use App\Company;
 use App\Problem;
 use App\CategoryProblem;
 use App\CategoryResource;
+use App\ResourceProblem;
 use App\Disponibilidade;
 
 use Illuminate\Http\Request;
@@ -19,8 +20,72 @@ class UserController extends BaseController
     {
         return response()->json(User::all());
     }
-  
-  
+
+    public function sentimentProject(Request $request){
+      $rs = ResourceProblem::where('problem_id', $request->problem_id)->get();
+
+      $happy = 0;
+      $middle = 0;
+      $bad = 0;
+
+      foreach($rs as $key) {
+        if($key['sentiment'] == 'Feliz'){
+          $happy = $happy + 1;
+        } else if($key['sentiment'] == 'Moderado') {
+          $middle = $middle + 1;
+        } else if($key['sentiment'] == 'Triste'){
+          $bad = $bad + 1;
+        }        
+      }
+
+      if($happy == 0 && $middle == 0 && $bad == 0){
+        return response()->json("Não existe analise para esse projeto");
+      }
+      else if($happy >= $middle && $happy >= $bad){
+        return response()->json("Feliz");
+      }
+      else if($middle > $happy && $middle >= $bad){
+        return response()->json("Moderado");
+      }
+      else if($bad >= $middle && $bad >= $happy){
+        return response()->json("Triste");
+      }
+    }
+
+    public function sentiment(Request $request)
+    {
+
+      $rs = ResourceProblem::where('resource_id', $request->resource_id)->first();
+
+
+      $text = $request->text;
+      $aux_array = preg_split ("/\ /", $text);
+
+      $feliz = ['GOSTEI', 'ÓTIMO', 'ÓTIMA', 'EXELENTE', 'LEGAL', 'ANIMAL', "FELIZ", "SUCESSO", "COMPROMISSADO"];
+      $triste = ['PESSÍMO', 'DECEPCIONADO', 'CONFLITO', 'DESCOMPROMISSO', 'HORRÍVEL', 'CHATEADO', 'TRISTE', 'ATRASADO'];
+
+      $resposta = "Moderado";
+
+      foreach($aux_array as $key) {
+        foreach($feliz as $keyFeliz) {
+          if(strtoupper($key) === $keyFeliz)
+            $resposta = "Feliz";
+        }
+        foreach($triste as $keyTriste) {
+          if(strtoupper($key) === $keyTriste)
+            $resposta = "Triste";
+        }
+
+      }
+
+      $rs['sentiment'] = $resposta;
+      $rs['comment'] = $request->text;
+
+      $rs->save();
+
+      return response()->json($resposta);
+    }
+
   public function create(Request $request)
     {
       $user = User::create($request->all());
@@ -39,18 +104,18 @@ class UserController extends BaseController
 
   //Posso criar um metodo login
   public function login(Request $request)
-  {    
-  
+  {
+
     $user = User::where('password', $request->password)->where(function ($query) use ($request) {
       $query->where('name', '=', $request->login)
             ->orWhere('email', '=', $request->login);
       })->first();
     if(!$user){
       return abort(401, "Usuario ou Senha inválida");
-    } 
+    }
 
     if($user->type === "RESOURCE"){
-      $user->id = Resource::where('id', $user->resource_id)->pluck('id')->first();       
+      $user->id = Resource::where('id', $user->resource_id)->pluck('id')->first();
     }
 
     return response()->json($user);
@@ -58,7 +123,7 @@ class UserController extends BaseController
 
   //Posso criar um metodo login
   public function retrospect(Request $request)
-  {   
+  {
     $array = array();
     $currentDate = \Carbon\Carbon::now();
     $segunda = $currentDate->subDays($currentDate->dayOfWeek - 1)->subWeek();
@@ -89,7 +154,7 @@ class UserController extends BaseController
       $five = User::whereRaw("Date(created_at) <= '".$quinta."'")->count();
       $six = User::whereRaw("Date(created_at) <= '".$sexta."'")->count();
       $sevem = User::whereRaw("Date(created_at) <= '".$sabado."'")->count();
-          
+
     } else if ($request->show ==="COMPANY"){
       $one = Company::whereRaw("Date(created_at) <= '".$domingo."'")->count();
       $two = Company::whereRaw("Date(created_at) <= '".$segunda."'")->count();
@@ -98,7 +163,7 @@ class UserController extends BaseController
       $five = Company::whereRaw("Date(created_at) <= '".$quinta."'")->count();
       $six = Company::whereRaw("Date(created_at) <= '".$sexta."'")->count();
       $sevem = Company::whereRaw("Date(created_at) <= '".$sabado."'")->count();
-    
+
     } else if ($request->show ==="RESOURCE"){
       $one = Resource::whereRaw("Date(created_at) <= '".$domingo."'")->count();
       $two = Resource::whereRaw("Date(created_at) <= '".$segunda."'")->count();
@@ -128,8 +193,8 @@ class UserController extends BaseController
     {
       return response()->json(User::find($id));
     }
-    
-  //função para filtro de busca de Usuarios. 
+
+  //função para filtro de busca de Usuarios.
   public function search(Request $request){
     $user = User::where('name','LIKE','%'.$request->search.'%')
     ->orWhere('email','LIKE','%'.$request->search.'%')->get();
@@ -138,7 +203,7 @@ class UserController extends BaseController
    }
    return response()->json($user);
   }
-  
+
   public function update($id, Request $request)
     {
       $user = User::findOrFail($id);
@@ -148,178 +213,177 @@ class UserController extends BaseController
 
   public function match($id, Request $request){
 
-    //filtrar categorias 
+    //filtrar categorias
     $cp_id = CategoryProblem::where('problem_id', $id)->pluck("id")->toArray();
     $rs_id = CategoryResource::whereIn('category_id', $cp_id)->pluck("resource_id")->toArray();
 
     //filtrar disponibilidade
     $disp_problem = Disponibilidade::where('problem_id', $id)->get();
-    
+
     $count = 0;
-       
+
+    $novoArray = $rs_id;
     foreach ($rs_id as $r_id){
       $d_rec = Disponibilidade::where('resource_id', $r_id)->get();
       // echo var_dump($d_rec[0]);
-      
-      //segunda
-      if($disp_problem[0]->segunda[0] == 1 && $d_rec[0]->segunda[0] != 1) {                  
-        // echo "remove: ". $r_id;
 
-        unset($rs_id[$count]);                    
+      //segunda
+      if($disp_problem[0]->segunda[0] == 1 && $d_rec[0]->segunda[0] == 0) {
+        unset($novoArray[$count-1]);
         $count++;
-        continue;        
+        continue;
       };
-      if($disp_problem[0]->segunda[1] == 1) {
-        if($d_rec[0]->segunda[1] == 0){          
-          unset($rs_id[$count]);
+      if($disp_problem[0]->segunda[1] == 1 && $d_rec[0]->segunda[1] == 0) {
+        
+          unset($novoArray[$count-1]);
           $count++;
-          continue;          
-        };
+          continue;
+        
       }
-      if($disp_problem[0]->segunda[2] == 1) {
-        if($d_rec[0]->segunda[2] == 0){          
-          unset($rs_id[$count]);
+      if($disp_problem[0]->segunda[2] == 1 && $d_rec[0]->segunda[2] == 0) {
+        
+          unset($novoArray[$count-1]);
           $count++;
-          continue;          
-        };
+          continue;
+        
       }
+
+      //terca
+      if($disp_problem[0]->terca[0] == 1 && $d_rec[0]->terca[0] == 0) {
+        
+          unset($novoArray[$count-1]);
+          $count++;
+          continue;
+        
+      }
+      if($disp_problem[0]->terca[1] == 1 && $d_rec[0]->terca[1] == 0) {
+        
+          unset($novoArray[$count-1]);
+          $count++;
+          continue;
+        
+      }
+      if($disp_problem[0]->terca[2] == 1 && $d_rec[0]->terca[2] == 0) {
       
-      //terca 
-      if($disp_problem[0]->terca[0] == 1) {
-        if($d_rec[0]->terca[0] == 0){          
-          unset($rs_id[$count]);
+          unset($novoArray[$count-1]);
           $count++;
-          continue;          
-        };
-      }
-      if($disp_problem[0]->terca[1] == 1) {
-        if($d_rec[0]->terca[1] == 0){          
-          unset($rs_id[$count]);
-          $count++;
-          continue;          
-        };
-      }
-      if($disp_problem[0]->terca[2] == 1) {
-        if($d_rec[0]->terca[2] == 0){          
-          unset($rs_id[$count]);
-          $count++;
-          continue;          
-        };
+          continue;
+      
       }
       //quarta
-      if($disp_problem[0]->quarta[0] == 1) {
-        if($d_rec[0]->quarta[0] == 0){          
-          unset($rs_id[$count]);
+      if($disp_problem[0]->quarta[0] == 1 && $d_rec[0]->quarta[0] == 0) {
+      
+          unset($novoArray[$count-1]);
           $count++;
-          continue;          
-        };
+          continue;
+      
       }
-      if($disp_problem[0]->quarta[1] == 1) {
-        if($d_rec[0]->quarta[1] == 0){          
-          unset($rs_id[$count]);
+      if($disp_problem[0]->quarta[1] == 1 && $d_rec[0]->quarta[1] == 0) {
+      
+          unset($novoArray[$count-1]);
           $count++;
-          continue;          
-        };
+          continue;
+      
       }
-      if($disp_problem[0]->quarta[2] == 1) {
-        if($d_rec[0]->quarta[2] == 0){          
-          unset($rs_id[$count]);
+      if($disp_problem[0]->quarta[2] == 1 && $d_rec[0]->quarta[2] == 0) {
+      
+          unset($novoArray[$count-1]);
           $count++;
-          continue;          
-        };
+          continue;
+      
       }
       //quinta
-      if($disp_problem[0]->quinta[0] == 1) {
-        if($d_rec[0]->quinta[0] == 0){          
-          unset($rs_id[$count]);
+      if($disp_problem[0]->quinta[0] == 1 && $d_rec[0]->quinta[0] == 0) {
+      
+          unset($novoArray[$count-1]);
           $count++;
-          continue;          
-        };
+          continue;
+      
       }
-      if($disp_problem[0]->quinta[1] == 1) {
-        if($d_rec[0]->quinta[1] == 0){          
-          unset($rs_id[$count]);
+      if($disp_problem[0]->quinta[1] == 1 && $d_rec[0]->quinta[1] == 0) {
+      
+          unset($novoArray[$count-1]);
           $count++;
-          continue;          
-        };
+          continue;
+      
       }
-      if($disp_problem[0]->quinta[2] == 1) {
-        if($d_rec[0]->quinta[2] == 0){          
-          unset($rs_id[$count]);
+      if($disp_problem[0]->quinta[2] == 1 && $d_rec[0]->quinta[2] == 0) {
+      
+          unset($novoArray[$count-1]);
           $count++;
-          continue;          
-        };
+          continue;
+      
       }
-      //sexta 
-      if($disp_problem[0]->sexta[0] == 1) {
-        if($d_rec[0]->sexta[0] == 0){          
-          unset($rs_id[$count]);
+      //sexta
+      if($disp_problem[0]->sexta[0] == 1 && $d_rec[0]->sexta[0] == 0) {
+      
+          unset($novoArray[$count-1]);
           $count++;
-          continue;          
-        };
+          continue;
+      
       }
-      if($disp_problem[0]->sexta[1] == 1) {
-        if($d_rec[0]->sexta[1] == 0){          
-          unset($rs_id[$count]);
+      if($disp_problem[0]->sexta[1] == 1 && $d_rec[0]->sexta[1] == 0) {
+      
+          unset($novoArray[$count-1]);
           $count++;
-          continue;          
-        };
+          continue;
+      
       }
-      if($disp_problem[0]->sexta[2] == 1) {
-        if($d_rec[0]->sexta[2] == 0){          
-          unset($rs_id[$count]);
+      if($disp_problem[0]->sexta[2] == 1 && $d_rec[0]->sexta[2] == 0) {
+      
+          unset($novoArray[$count-1]);
           $count++;
-          continue;          
-        };
+          continue;
+      
       }
-      //sabado 
-      if($disp_problem[0]->sabado[0] == 1) {
-        if($d_rec[0]->sabado[0] == 0){          
-          unset($rs_id[$count]);
+      //sabado
+      if($disp_problem[0]->sabado[0] == 1 && $d_rec[0]->sabado[0] == 0) {
+      
+          unset($novoArray[$count-1]);
           $count++;
-          continue;          
-        };
+          continue;
+      
       }
-      if($disp_problem[0]->sabado[1] == 1) {
-        if($d_rec[0]->sabado[1] == 0){          
-          unset($rs_id[$count]);
+      if($disp_problem[0]->sabado[1] == 1 && $d_rec[0]->sabado[1] == 0) {
+      
+          unset($novoArray[$count-1]);
           $count++;
-          continue;          
-        };
+          continue;
+      
       }
-      if($disp_problem[0]->sabado[2] == 1) {
-        if($d_rec[0]->sabado[2] == 0){          
-          unset($rs_id[$count]);
+      if($disp_problem[0]->sabado[2] == 1 && $d_rec[0]->sabado[2] == 0) {
+      
+          unset($novoArray[$count-1]);
           $count++;
-          continue;          
-        };
+          continue;
+      
       }
-      //domingo 
-      if($disp_problem[0]->domingo[0] == 1) {
-        if($d_rec[0]->domingo[0] == 0){          
-          unset($rs_id[$count]);
+      //domingo
+      if($disp_problem[0]->domingo[0] == 1 && $d_rec[0]->domingo[0] == 0) {
+      
+          unset($novoArray[$count-1]);
           $count++;
-          continue;          
-        };
+          continue;
+      
       }
-      if($disp_problem[0]->domingo[1] == 1) {
-        if($d_rec[0]->domingo[1] == 0){          
-          unset($rs_id[$count]);
+      if($disp_problem[0]->domingo[1] == 1 && $d_rec[0]->domingo[1] == 0) {
+      
+          unset($novoArray[$count-1]);
           $count++;
-          continue;          
-        };
+          continue;
+      
       }
-      if($disp_problem[0]->domingo[2] == 1) {
-        if($d_rec[0]->domingo[2] == 0){          
-          unset($rs_id[$count]);
+      if($disp_problem[0]->domingo[2] == 1 && $d_rec[0]->domingo[2] == 0) {
+      
+          unset($novoArray[$count-1]);
           $count++;
-          continue;          
-        };
-      } 
+          continue;
+      
+      }
     }
 
+    $rs_id = $novoArray;
 
-    
 
     //filtrar formacao
     // para v2
@@ -329,7 +393,12 @@ class UserController extends BaseController
 
     //carregar recurso com user
     $recurso = Resource::whereIn("id", $rs_id)->get();
-    
+
+    foreach ($recurso as $resource) {
+      $disponibilidade = Disponibilidade::where('resource_id', $resource->id)->first();
+      $resource['disponibilidade'] =  $disponibilidade;
+
+    }
     return response()->json($recurso);
   }
 

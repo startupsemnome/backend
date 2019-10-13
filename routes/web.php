@@ -81,8 +81,12 @@ $router->get('category',  ['uses' => 'CategoryController@show']);
 // resource
 $router->get('/resource-aceept/{id}', ['uses' => 'ProblemController@resourceAccept']);
 
-//cadastro-retrospect
+// cadastro-retrospect
 $router->get('/cadastro-retrospect', ['uses' => 'UserController@retrospect']);
 
-//match
+// match
 $router->get('/match-resource-problem/{id}', ['uses' => 'UserController@match']);
+
+// analise de sentimento
+$router->get('/sentiment-analysis', ['uses' => 'UserController@sentiment']);
+$router->get('/sentiment-analysis-projects', ['uses' => 'UserController@sentimentProject']);

@@ -24,7 +24,7 @@ class CreateResourceTable extends Migration
             $table->string('fotoperfil', 50)->nullable();
             $table->string('dt_nascimento', 50)->nullable();
             $table->string('genero', 50)->nullable();
-            $table->string('estado_civil', 50);
+            $table->string('estado_civil', 50)->nullable();;
             $table->string('nacionalidade', 50)->nullable();
             $table->string('uf', 50)->nullable();
             $table->string('cidade', 50)->nullable();
