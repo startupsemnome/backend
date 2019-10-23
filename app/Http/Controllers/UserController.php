@@ -55,8 +55,14 @@ class UserController extends BaseController
     public function sentiment(Request $request)
     {
 
-      $rs = ResourceProblem::where('resource_id', $request->resource_id)->first();
+      $rs = ResourceProblem::where('problem_id', $request->problem_id)->where('resource_id', $request->resource_id)->first();
 
+      if(!$rs || $rs == null){
+        $rs = new ResourceProblem();
+        $rs['problem_id'] = $request->problem_id;
+        $rs['resource_id'] = $request->resource_id;
+        $rs['STATUS'] = "NENHUM";
+      }
 
       $text = $request->text;
       $aux_array = preg_split ("/\ /", $text);
