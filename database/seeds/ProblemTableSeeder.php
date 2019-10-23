@@ -8,7 +8,7 @@ class ProblemTableSeeder extends Seeder
     public function run()
     
     {
-      $empresa = ["Google", "São Judas", "Unip", "São Camilo", "Estacio", "Hcor"];
+      $empresa = ["google", "Microsoft", "Dell","google", "Microsoft", "Dell"];
       $titulo = ["Recursos hídricos", "Valor errado no boleto", "Sem energia", "Tecnologia fraca", "Ampliação de salas", "Falta de equipamentos"];
       $categoria = ["Tecnologia", "Administração", "Administração", "Enfermagem", "Administração", "Tecnologia"];
       $descricao =  ["A desigualdade da distribuição interna de água exige um adequado gerenciamento",
