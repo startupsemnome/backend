@@ -90,3 +90,4 @@ $router->get('/match-resource-problem/{id}', ['uses' => 'UserController@match'])
 // analise de sentimento
 $router->get('/sentiment-analysis', ['uses' => 'UserController@sentiment']);
 $router->get('/sentiment-analysis-projects', ['uses' => 'UserController@sentimentProject']);
+$router->post('/consult-feed',  ['uses' => 'UserController@search_feed']);

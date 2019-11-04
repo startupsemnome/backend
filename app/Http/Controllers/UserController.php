@@ -21,6 +21,15 @@ class UserController extends BaseController
         return response()->json(User::all());
     }
 
+  public function search_feed(Request $request){
+    $sr = ResourceProblem::where('problem_id', $request->problem_id)->where('resource_id', $request->resource_id)
+    ->orWhere('sentiment','LIKE','%'.$request->search.'%')
+    ->orWhere('comment','LIKE','%'.$request->search.'%')->get();
+    if(!$sr){
+      return response()->json("Sem cadastrados ");
+   }
+   return response()->json($sr);
+  }
     public function sentimentProject(Request $request){
       $rs = ResourceProblem::where('problem_id', $request->problem_id)->get();
 
