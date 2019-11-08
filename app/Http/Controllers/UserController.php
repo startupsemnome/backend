@@ -76,7 +76,7 @@ class UserController extends BaseController
       $text = $request->text;
       $aux_array = preg_split ("/\ /", $text);
 
-      $feliz = ['GOSTEI', 'ÓTIMO', 'ÓTIMA', 'EXELENTE', 'LEGAL', 'ANIMAL', "FELIZ", "SUCESSO", "COMPROMISSADO"];
+      $feliz = ['GOSTEI', 'ÓTIMO', 'ÓTIMA', 'EXELENTE', 'LEGAL', 'ANIMAL', "MELHOR", "AGRADAVEL", "MARAVILHOSO", "SATISFEITO", "FELIZ", "SUCESSO", "COMPROMISSADO"];
       $triste = ['PESSÍMO', 'DECEPCIONADO', 'CONFLITO', 'DESCOMPROMISSO', 'HORRÍVEL', 'CHATEADO', 'TRISTE', 'ATRASADO'];
 
       $resposta = "Moderado";
