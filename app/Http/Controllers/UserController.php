@@ -22,9 +22,8 @@ class UserController extends BaseController
     }
 
   public function search_feed(Request $request){
-    $sr = ResourceProblem::where('problem_id', $request->problem_id)->where('resource_id', $request->resource_id)
-    ->orWhere('sentiment','LIKE','%'.$request->search.'%')
-    ->orWhere('comment','LIKE','%'.$request->search.'%')->get();
+    $sr = ResourceProblem::where('sentiment','LIKE','%'.$request->search.'%')
+    ->orWhere('comment','LIKE','%'.$request->search.'%')->with('problem')->with('resource')->get();
     if(!$sr){
       return response()->json("Sem cadastrados ");
    }
