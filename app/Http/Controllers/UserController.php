@@ -76,9 +76,8 @@ class UserController extends BaseController
       $aux_array = preg_split ("/\ /", $text);
 
       $feliz = [
-      '','',
-      '','',        
-      '','',
+      'IMPRESCINDÍVEL','HONRA',
+      'TENTADOR','INSPIRADOR','CATIVANTE','IRRESISTÍVEL',
       'ADMIRÁVEL','AGRADÁVEL','DECENTE','APROPRIADO',
       'INTERESSANTE','FAVORÁVEL','OPORTUNO','CONVENIENTE',
       'PERFEITO','EXCELENTE','FACÍL','PERCEPTÍVEL',  
@@ -100,7 +99,9 @@ class UserController extends BaseController
       'ANIMAL',"MELHOR","AGRADAVEL","MARAVILHOSO",
       "SATISFEITO", "FELIZ","SUCESSO", "COMPROMISSADO"
     ];                                                
-      $triste = ['','','','','','','','','','','','','SÓRDIDO',
+      $triste = ['ENCABULADO','OPRIMIDO','INCOMODO','ESTRALHO','CONSTRANGIDA','CONSTRANGIDO','MAGOADA',
+      'OFENCIVO','DECEPCIONANTE','MAGOADO','DESISTIR',
+      'TRAUMA','TRAUMÁTICO','FALHA','SÓRDIDO',
       'INCONVENIENTE','DEPRIMENTE','FULEIRO','VULGAR',
       'BANAL','MEDÍOCRE','PROBLEMÁTICO','DEPRESSIVO',
       'DESANIMADO','DESORDENADO','APÁTICO','CONFUSO','DESORGANIZADO',
