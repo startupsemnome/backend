@@ -75,11 +75,48 @@ class UserController extends BaseController
       $text = $request->text;
       $aux_array = preg_split ("/\ /", $text);
 
-      $feliz = ['GOSTEI', 'ÓTIMO', 'ÓTIMA', 'EXELENTE', 'LEGAL', 'ANIMAL', "MELHOR", "AGRADAVEL", "MARAVILHOSO", "SATISFEITO", "FELIZ", "SUCESSO", "COMPROMISSADO"];
-      $triste = ['PESSÍMO', 'DECEPCIONADO', 'CONFLITO', 'DESCOMPROMISSO', 'HORRÍVEL', 'CHATEADO', 'TRISTE', 'ATRASADO'];
+      $feliz = [
+      '','',
+      '','',        
+      '','',
+      'ADMIRÁVEL','AGRADÁVEL','DECENTE','APROPRIADO',
+      'INTERESSANTE','FAVORÁVEL','OPORTUNO','CONVENIENTE',
+      'PERFEITO','EXCELENTE','FACÍL','PERCEPTÍVEL',  
+      'COMPREENSÍVEL','FIEL','CUMPLICIDADE','BRILHANTE', 
+      'VIBRANTE','ESTIMULANTE','REVIGORANTE','DESTINADO',
+      'AFINIDADE','ZELOSO','APLICADO','CONSAGRADO',
+      'DEDICADO','ATRATIVO','RESPEITO','AFEIÇÃO', 
+      'ESTIMADO','BEM','VITÓRIOSO','VITÓRIA',
+      'FOCADA','FOCADO','LIBERTADOR','ENCANTADOR',
+      'ENCANTADA','ENCANTADO','ESTIMÁDO','ADORÁVEL',
+      'IMBATÍVEL','EMBASADO','FUNDAMENTADO','SURPEENDENTE', 
+      'ESPANTOSO','EXTRAORDINÁRIO','FUNDAMENTAL','PRÁTICO',
+      'CERTO','CLARO','ESTAVEL','SEGURO', 
+      'INDESCRITÍVEL','INSTRUTIVO','DETERMINADO','CONSTRUTIVO',
+      'FIRME','EFETIVO','PRAZEROSO','PROVEITOSO',
+      'PROPÍCIO','BOM','BENÉFICO','ÚTIL',
+      'FAVORÁVEL','ASSERTIVO','GOSTEI','DEMAIS',
+      'ÓTIMO','ÓTIMA','EXELENTE','LEGAL', 
+      'ANIMAL',"MELHOR","AGRADAVEL","MARAVILHOSO",
+      "SATISFEITO", "FELIZ","SUCESSO", "COMPROMISSADO"
+    ];                                                
+      $triste = ['','','','','','','','','','','','','SÓRDIDO',
+      'INCONVENIENTE','DEPRIMENTE','FULEIRO','VULGAR',
+      'BANAL','MEDÍOCRE','PROBLEMÁTICO','DEPRESSIVO',
+      'DESANIMADO','DESORDENADO','APÁTICO','CONFUSO','DESORGANIZADO',
+      'INSANO','ABOMINANTE','AVERSÃO','OBSCURO',
+      'ERRADO','BAGUNÇADO','DISCORDANTE','NOJENTO',
+      'ASQUEROSO','SUJO','ENJOADO','IMUNDO',
+      'ENJOATIVO','REVOLTADO','REVOLTANTE','INDECENTE',
+      'INDIGNANDO','INDIGNANTE','INCOMPREENSÍVEL','DESAGRADÁVEL',
+      'ODIOSO','PORCO','REPUGNANTE','DESPREZO',
+      'DESPREZÍVEL','VAGO','ORDINÁRIO','PESSÍMO', 
+      'DECEPCIONADO', 'CONFLITO', 'DESCOMPROMISSO', 'HORRÍVEL', 
+      'CHATEADO', 'TRISTE', 'ATRASADO','INSATISFEITO'
+    ];
 
       $resposta = "Moderado";
-
+//php artisan migrate:refresh   php artisan db:seed  php artisan migrate:refresh --seed 
       foreach($aux_array as $key) {
         foreach($feliz as $keyFeliz) {
           if(strtoupper($key) === $keyFeliz)
