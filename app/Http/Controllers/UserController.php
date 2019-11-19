@@ -94,12 +94,16 @@ class UserController extends BaseController
       'INDESCRITÍVEL','INSTRUTIVO','DETERMINADO','CONSTRUTIVO',
       'FIRME','EFETIVO','PRAZEROSO','PROVEITOSO',
       'PROPÍCIO','BOM','BENÉFICO','ÚTIL',
+      'aprazível', 'afável', 'encantador', 'deleitável', 'prazeroso',
+      'adequado', 'apropriado', 'conveniente', 'certo', 'correto', 'acertado', 'próprio',
+       'ideal', 'adaptado',
       'FAVORÁVEL','ASSERTIVO','GOSTEI','DEMAIS',
-      'ÓTIMO','ÓTIMA','EXELENTE','LEGAL', 
+      'ÓTIMO','ÓTIMA','EXELENTE','LEGAL', 'EMPOLGANTE',
       'ANIMAL',"MELHOR","AGRADAVEL","MARAVILHOSO",
       "SATISFEITO", "FELIZ","SUCESSO", "COMPROMISSADO"
     ];                                                
       $triste = [
+      'MERDA','CHATO',
       'ENCABULADO','OPRIMIDO','INCOMODO','BOSTA','ZUADO',
       'ESTRALHO','CONSTRANGIDA','CONSTRANGIDO','MAGOADA',
       'OFENCIVO','DECEPCIONANTE','MAGOADO','DESISTIR',
@@ -109,24 +113,27 @@ class UserController extends BaseController
       'DESANIMADO','DESORDENADO','APÁTICO','CONFUSO','DESORGANIZADO',
       'INSANO','ABOMINANTE','AVERSÃO','OBSCURO',
       'ERRADO','BAGUNÇADO','DISCORDANTE','NOJENTO',
-      'ASQUEROSO','SUJO','ENJOADO','IMUNDO',
+      'ASQUEROSO','SUJO','ENJOADO','IMUNDO', 'PREJUDICIAL',
       'ENJOATIVO','REVOLTADO','REVOLTANTE','INDECENTE',
       'INDIGNANDO','INDIGNANTE','INCOMPREENSÍVEL','DESAGRADÁVEL',
       'ODIOSO','PORCO','REPUGNANTE','DESPREZO',
       'DESPREZÍVEL','VAGO','ORDINÁRIO','PESSÍMO', 
       'DECEPCIONADO', 'CONFLITO', 'DESCOMPROMISSO', 'HORRÍVEL', 
-      'CHATEADO', 'TRISTE', 'ATRASADO','INSATISFEITO'
+      'CHATEADO', 'TRISTE', 'ATRASADO','INSATISFEITO',
+      'mau', 'desagradável', 'inferior', 'fajuto', 'insatisfatório', 'reles', 'fraco', 'ordinário',
+       'nauseabundo', 'pestilento',
+       'estragado', 'podre', 'apodrecido', 'deteriorado', 'pútrido', 'putrefeito', 'putrefato', 'decomposto'
     ];
 
       $resposta = "Moderado";
 //php artisan migrate:refresh   php artisan db:seed  php artisan migrate:refresh --seed 
       foreach($aux_array as $key) {
         foreach($feliz as $keyFeliz) {
-          if(strtoupper($key) === $keyFeliz)
+          if($this->tirarAcentos(substr_replace(strtoupper($key), "", -1)) === $this->tirarAcentos(substr_replace(strtoupper($keyFeliz), "", -1)))
             $resposta = "Feliz";
         }
         foreach($triste as $keyTriste) {
-          if(strtoupper($key) === $keyTriste)
+          if($this->tirarAcentos(substr_replace(strtoupper($key), "", -1)) === $this->tirarAcentos(substr_replace(strtoupper($keyTriste), "", -1)))
             $resposta = "Triste";
         }
 
@@ -139,6 +146,10 @@ class UserController extends BaseController
 
       return response()->json($resposta);
     }
+
+    function tirarAcentos($string){
+      return preg_replace(array("/(á|à|ã|â|ä)/","/(Á|À|Ã|Â|Ä)/","/(é|è|ê|ë)/","/(É|È|Ê|Ë)/","/(í|ì|î|ï)/","/(Í|Ì|Î|Ï)/","/(ó|ò|õ|ô|ö)/","/(Ó|Ò|Õ|Ô|Ö)/","/(ú|ù|û|ü)/","/(Ú|Ù|Û|Ü)/","/(ñ)/","/(Ñ)/"),explode(" ","a A e E i I o O u U n N"),$string);
+  }
 
   public function create(Request $request)
     {
