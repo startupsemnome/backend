@@ -118,7 +118,7 @@ class UserController extends BaseController
       'INDIGNANDO','INDIGNANTE','INCOMPREENSÍVEL','DESAGRADÁVEL',
       'ODIOSO','PORCO','REPUGNANTE','DESPREZO',
       'DESPREZÍVEL','VAGO','ORDINÁRIO','PESSÍMO', 
-      'DECEPCIONADO', 'CONFLITO', 'DESCOMPROMISSO', 'HORRÍVEL', 
+      'DECEPCIONADO', 'CONFLITO', 'DESCOMPROMISSO', 'HORRÍVEL', 'ruim',
       'CHATEADO', 'TRISTE', 'ATRASADO','INSATISFEITO',
       'mau', 'desagradável', 'inferior', 'fajuto', 'insatisfatório', 'reles', 'fraco', 'ordinário',
        'nauseabundo', 'pestilento',
